@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Amaël Lavaysse — Administration systèmes & réseaux / Cybersécurité</title>
+<meta name="description" content="Portfolio d'Amaël Lavaysse — Bac+4 Administration Systèmes & Réseaux à l'ENI School Niort, alternance Chargé SSI & Support N2 chez Territoria Prévoyance.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="scanlines" aria-hidden="true"></div>
+
+<nav class="nav">
+  <span class="nav__logo">root@<span class="nav__name">amael</span></span>
+  <div class="nav__links">
+    <a href="#about">whoami</a>
+    <a href="#experience">parcours</a>
+    <a href="#projects">projets</a>
+    <a href="#thm">thm</a>
+    <a href="#cv">cv</a>
+    <a href="#contact">contact</a>
+  </div>
+</nav>
+
+<!-- ============ HERO : séquence terminal ============ -->
+<header class="hero" id="top">
+  <div class="hero__terminal">
+    <div class="hero__bar">
+      <span class="dot dot--red"></span><span class="dot dot--amber"></span><span class="dot dot--green"></span>
+      <span class="hero__barTitle">scan.sh — 80x24</span>
+    </div>
+    <pre class="hero__body"><code id="typewriter"></code><span class="cursor">█</span></pre>
+  </div>
+  <div class="hero__intro">
+    <p class="eyebrow">// chargé SSI & support N2 — en route vers la cyber offensive</p>
+    <h1>Amaël Lavaysse</h1>
+    <p class="hero__tagline">
+      Diplômé du BTS SIO option SISR, j'intègre en septembre le Bac+4 Administration Systèmes
+      &amp; Réseaux à l'ENI School de Niort, en alternance chez Territoria Prévoyance en tant
+      que Chargé SSI &amp; Support N2. Passionné de cybersécurité, je développe mes premiers
+      scripts offensifs en Python.
+    </p>
+    <div class="hero__actions">
+      <a class="btn btn--primary" href="#projects">Voir mes projets</a>
+      <a class="btn btn--ghost" href="#cv">Télécharger mon CV</a>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <!-- ============ WHOAMI / À PROPOS ============ -->
+  <section class="section" id="about">
+    <p class="section__log">001</p>
+    <h2>whoami</h2>
+    <div class="about__grid">
+      <div class="about__text">
+        <p>
+          Diplômé du BTS SIO option SISR (Solutions d'Infrastructure, Systèmes et Réseaux) au
+          lycée Fénelon Notre-Dame à La Rochelle, j'ai une expérience concrète en support
+          informatique, virtualisation et gestion de parc acquise sur le terrain, en stages
+          successifs.
+        </p>
+        <p>
+          En septembre, je démarre le Bac+4 Administration Systèmes &amp; Réseaux à l'ENI School
+          de Niort, en alternance chez <strong>Territoria Prévoyance</strong> en tant que
+          Chargé SSI &amp; Support N2. En parallèle, je m'oriente vers la cybersécurité : je
+          passe des certifications TryHackMe et je commence à développer mes premiers scripts
+          offensifs en Python.
+        </p>
+      </div>
+      <ul class="about__stack">
+        <li><span class="stack__label">Systèmes</span><span class="stack__value">Windows, Linux</span></li>
+        <li><span class="stack__label">Réseaux</span><span class="stack__value">Adressage IP, VLAN, routage de base</span></li>
+        <li><span class="stack__label">Services</span><span class="stack__value">Active Directory, GPO</span></li>
+        <li><span class="stack__label">Virtualisation</span><span class="stack__value">VMware, Hyper-V</span></li>
+        <li><span class="stack__label">Scripting</span><span class="stack__value">PowerShell, Bash, Python</span></li>
+        <li><span class="stack__label">Automatisation</span><span class="stack__value">n8n, PowerShell</span></li>
+        <li><span class="stack__label">Support</span><span class="stack__value">Diagnostic, GLPI, dépannage</span></li>
+        <li><span class="stack__label">Formation</span><span class="stack__value">BTS SIO SISR → Bac+4 ENI School Niort</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ PARCOURS / EXPÉRIENCE ============ -->
+  <section class="section" id="experience">
+    <p class="section__log">002</p>
+    <h2>parcours</h2>
+    <p class="section__sub">Alternance en cours et stages réalisés pendant le BTS.</p>
+
+    <ol class="timeline">
+      <li class="timeline__item">
+        <div class="timeline__date">Sept. 2026 <span class="timeline__dur">(à venir)</span></div>
+        <div class="timeline__body">
+          <h3>Chargé SSI &amp; Support N2 — Territoria Prévoyance <span class="timeline__type">Alternance</span></h3>
+          <p class="timeline__place">En parallèle du Bac+4 à l'ENI School, Niort</p>
+          <p>Sécurité des systèmes d'information et support technique niveau 2.</p>
+        </div>
+      </li>
+      <li class="timeline__item">
+        <!-- EDIT: vérifie la date de fin exacte de ton alternance ACS si besoin -->
+        <div class="timeline__date">Sept. 2024 — 2026</div>
+        <div class="timeline__body">
+          <h3>Technicien — ACS <span class="timeline__type">Alternance</span></h3>
+          <p class="timeline__place">Lagord (17)</p>
+          <p>Spécialisé en SAV, déploiement et logiciel d'encaissement.</p>
+          <ul>
+            <li>Plus de 70 interventions de dépannage</li>
+            <li>Support technique à distance</li>
+            <li>Configuration logicielle et accompagnement client</li>
+          </ul>
+        </div>
+      </li>
+      <li class="timeline__item">
+        <div class="timeline__date">Mars - Mai 2024</div>
+        <div class="timeline__body">
+          <h3>Technicien Système et Réseau — Excelia Group <span class="timeline__type">Stage</span></h3>
+          <p class="timeline__place">La Rochelle (17)</p>
+          <ul>
+            <li>Travail en autonomie</li>
+            <li>Création d'un serveur virtuel</li>
+            <li>Montage de matériel informatique</li>
+          </ul>
+        </div>
+      </li>
+      <li class="timeline__item">
+        <div class="timeline__date">Avril — Oct. 2023</div>
+        <div class="timeline__body">
+          <h3>Technicien Support Système et Réseaux — CGR <span class="timeline__type">Stage</span></h3>
+          <p class="timeline__place">Périgny (17)</p>
+          <ul>
+            <li>Travail en équipe</li>
+            <li>Configuration de matériel informatique</li>
+            <li>Réparation de matériel informatique</li>
+          </ul>
+        </div>
+      </li>
+      <li class="timeline__item">
+        <div class="timeline__date">Mai — Juin 2022</div>
+        <div class="timeline__body">
+          <h3>Technicien Vente et Dépannage — LDLC <span class="timeline__type">Stage</span></h3>
+          <p class="timeline__place">Angoulins (17)</p>
+          <ul>
+            <li>Spécialisé en SAV et renseignement client</li>
+            <li>Réparation et montage de matériel informatique</li>
+          </ul>
+        </div>
+      </li>
+    </ol>
+
+    <div class="formation">
+      <div class="formation__item">
+        <span class="formation__degree">Bac+4 Administration Systèmes &amp; Réseaux <span class="timeline__type">À venir</span></span>
+        <span class="formation__school">ENI School, Niort</span>
+        <span class="formation__date">Sept. 2026 —</span>
+      </div>
+      <div class="formation__item">
+        <span class="formation__degree">BTS SIO — option SISR</span>
+        <span class="formation__school">Fénelon Notre-Dame, La Rochelle</span>
+        <!-- EDIT: remplace par tes vraies années de BTS -->
+        <span class="formation__date">Diplômé 2026</span>
+      </div>
+      <div class="formation__item">
+        <span class="formation__degree">Bac Pro Système Numérique — Réseau Informatique</span>
+        <span class="formation__school">Lycée Professionnel Rompsay, La Rochelle</span>
+        <span class="formation__date">2021 – 2024</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PROJETS ============ -->
+  <section class="section" id="projects">
+    <p class="section__log">003</p>
+    <h2>projets</h2>
+    <p class="section__sub">Scripts et outils, du plus récent au plus ancien. Chaque projet pointe vers son dépôt.</p>
+
+    <div class="projects__grid">
+
+      <!-- EDIT: duplique ce bloc .card pour chaque projet -->
+      <article class="card">
+        <div class="card__head">
+          <span class="card__status status--live">actif</span>
+          <span class="card__lang">Python</span>
+        </div>
+        <h3>Password manager + brute force cracker</h3>
+        <p>Développement d'un gestionnaire de mots de passe chiffré en Python et d'un outil de brute force pour analyser les vulnérabilités du chiffrement. </p>
+        <ul class="card__tags">
+          <li>Python</li>
+          <li>Cryptographie</li>
+          <li>Brute Force</li>
+        </ul>
+        <a class="card__link" href="https://github.com/abcrossedlol/password-manager-caesar" target="_blank" rel="noopener">Voir le code →</a>
+      </article>
+
+      <article class="card">
+        <div class="card__head">
+          <span class="card__status status--wip">en cours</span>
+          <span class="card__lang">Python</span>
+        </div>
+        <h3>Nom du projet 2</h3>
+        <p>Description courte du deuxième projet, son objectif et son état d'avancement.</p>
+        <ul class="card__tags">
+          <li>recon</li>
+          <li>osint</li>
+        </ul>
+        <a class="card__link" href="#" target="_blank" rel="noopener">Voir le code →</a>
+      </article>
+
+      <article class="card card--planned">
+        <div class="card__head">
+          <span class="card__status status--planned">prévu</span>
+          <span class="card__lang">Python</span>
+        </div>
+        <h3>Projet futur</h3>
+        <p>Idée de projet à venir : ce que tu comptes construire et pourquoi ça t'intéresse.</p>
+        <ul class="card__tags">
+          <li>roadmap</li>
+        </ul>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ============ TRYHACKME ============ -->
+  <section class="section" id="thm">
+    <p class="section__log">004</p>
+    <h2>tryhackme &amp; certifications</h2>
+    <div class="thm__panel">
+      <ul class="cert__list">
+        <li><span class="cert__name">TryHackMe — Pre Security</span><span class="cert__year">2025</span></li>
+        <li><span class="cert__name">TryHackMe — Advent of Cyber 2025</span><span class="cert__year">2025</span></li>
+        <li><span class="cert__name">SecNum académie</span><span class="cert__year">2025</span></li>
+        <li><span class="cert__name">PIX</span><span class="cert__year">2025</span></li>
+      </ul>
+      <!-- EDIT: remplace # par le lien vers ton vrai profil TryHackMe -->
+      <a class="btn btn--primary thm__cta" href="#" target="_blank" rel="noopener">Voir mon profil TryHackMe →</a>
+    </div>
+    <p class="section__sub">Writeups en cours de rédaction — reviens bientôt, ou consulte-les directement sur mon profil.</p>
+  </section>
+
+  <!-- ============ CV ============ -->
+  <section class="section" id="cv">
+    <p class="section__log">005</p>
+    <h2>cv</h2>
+    <div class="cv__panel">
+      <p>Mon CV à jour, au format PDF.</p>
+      <a class="btn btn--primary" href="cv.pdf" download>Télécharger le CV (PDF) ↓</a>
+    </div>
+  </section>
+
+  <!-- ============ CONTACT ============ -->
+  <section class="section" id="contact">
+    <p class="section__log">006</p>
+    <h2>contact</h2>
+    <div class="contact__grid">
+      <a class="contact__item" href="mailto:a.lavaysse@orange.fr">
+        <span class="contact__label">mail</span>
+        <span class="contact__value">a.lavaysse@orange.fr</span>
+      </a>
+      <a class="contact__item" href="tel:+33782946767">
+        <span class="contact__label">téléphone</span>
+        <span class="contact__value">07 82 94 67 66</span>
+      </a>
+      <!-- EDIT: ajoute tes liens GitHub / LinkedIn / TryHackMe quand tu les as -->
+      <a class="contact__item" href="https://github.com/tonpseudo" target="_blank" rel="noopener">
+        <span class="contact__label">github</span>
+        <span class="contact__value">github.com/tonpseudo</span>
+      </a>
+      <a class="contact__item" href="https://linkedin.com/in/tonprofil" target="_blank" rel="noopener">
+        <span class="contact__label">linkedin</span>
+        <span class="contact__value">linkedin.com/in/tonprofil</span>
+      </a>
+      <span class="contact__item contact__item--static">
+        <span class="contact__label">localisation</span>
+        <span class="contact__value">Saint-Xandre (17) — La Rochelle et alentours</span>
+      </span>
+      <span class="contact__item contact__item--static">
+        <span class="contact__label">statut</span>
+        <span class="contact__value">Bac+4 ENI School Niort — alternance Territoria Prévoyance</span>
+      </span>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <p>&copy; <span id="year"></span> Amaël Lavaysse. Construit à la main, hébergé avec soin.</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
