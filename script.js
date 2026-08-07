@@ -13,7 +13,7 @@ const lines = [
   { text: 'Alternance : Chargé SSI & Support N2 — Territoria Prévoyance', pause: 400 },
   { text: '', pause: 100 },
   { text: '$ ls skills/', pause: 300 },
-  { text: 'windows.sh  linux.sh  python.sh n8n.sh  powershell.sh  active-directory/  virtualisation/', pause: 400 },
+  { text: 'windows.sh  linux.sh  python.sh  n8n.sh  powershell.sh  active-directory/  virtualisation/', pause: 400 },
   { text: '', pause: 100 },
   { text: '$ status', pause: 300 },
   { text: '[OK] en poste — Bac+4 admin sys & réseaux, Niort, dès septembre 2026', pause: 0 },
