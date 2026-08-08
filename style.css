@@ -404,3 +404,15 @@ body { padding-bottom: 58px; }
   body { padding-bottom: 64px; }
   .cmdbar__prompt { display: none; }
 }
+
+/* sous-groupes de projets */
+.projects__group-title {
+  font-family: var(--mono);
+  font-size: 0.95rem;
+  color: var(--amber);
+  text-transform: lowercase;
+  margin: 8px 0 14px;
+}
+.projects__group-title:not(:first-of-type) {
+  margin-top: 36px;
+}
