@@ -73,7 +73,7 @@ const fs = {
   projets:    { id: 'projects',   type: 'dir',  label: 'projets' },
   thm:        { id: 'thm',        type: 'dir',  label: 'thm' },
   contact:    { id: 'contact',    type: 'dir',  label: 'contact' },
-  cv:         { id: 'cv',         type: 'file', label: 'cv.pdf' },
+  cv:         { id: 'cv',         type: 'file', label: 'CV_LAVAYSSE_AMAËL.pdf' },
 };
 const alias = { whoami: 'about', parcours: 'experience', projects: 'projets', tryhackme: 'thm' };
 
@@ -154,14 +154,14 @@ function runCommand(raw) {
       goTo(entry.id);
     } else {
       goTo(entry.id);
-      window.open('cv.pdf', '_blank');
+      window.open('CV_LAVAYSSE_AMAËL.pdf', '_blank');
     }
     return;
   }
 
   const direct = resolve(cmd.replace(/^\/+/, ''));
   if (direct) {
-    if (direct.type === 'file') window.open('cv.pdf', '_blank');
+    if (direct.type === 'file') window.open('CV_LAVAYSSE_AMAËL.pdf', '_blank');
     goTo(direct.id);
     return;
   }
