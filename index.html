@@ -172,22 +172,22 @@
     </div>
   </section>
 
-  <!-- ============ PROJETS ============ -->
+<!-- ============ PROJETS ============ -->
   <section class="section" id="projects">
     <p class="section__log">003</p>
     <h2>projets</h2>
-    <p class="section__sub">Scripts et outils, du plus récent au plus ancien. Chaque projet pointe vers son dépôt.</p>
+    <p class="section__sub">Scripts et outils, classés par domaine.</p>
 
+    <h3 class="projects__group-title">// cyber</h3>
     <div class="projects__grid">
 
-      <!-- EDIT: duplique ce bloc .card pour chaque projet -->
       <article class="card">
         <div class="card__head">
           <span class="card__status status--live">actif</span>
           <span class="card__lang">Python</span>
         </div>
         <h3>Password manager + brute force cracker</h3>
-        <p>Développement d'un gestionnaire de mots de passe chiffré en Python et d'un outil de brute force pour analyser les vulnérabilités du chiffrement. </p>
+        <p>Développement d'un gestionnaire de mots de passe chiffré en Python et d'un outil de brute force pour analyser les vulnérabilités du chiffrement.</p>
         <ul class="card__tags">
           <li>Python</li>
           <li>Cryptographie</li>
@@ -204,9 +204,9 @@
         <h3>Keylogger — Monitoring Tool</h3>
         <p>Keylogger développé en Python capturant les frappes clavier et envoyant des rapports automatiques par email à intervalle défini.</p>
         <ul class="card__tags">
-        <li>Python</li>
-        <li>Monitoring</li>
-        <li>Automatisation</li>
+          <li>Python</li>
+          <li>Monitoring</li>
+          <li>Automatisation</li>
         </ul>
         <a class="card__link" href="#" target="_blank" rel="noopener">Voir le code →</a>
       </article>
@@ -226,8 +226,103 @@
       </article>
 
     </div>
-  </section>
 
+    <h3 class="projects__group-title">// automatisation</h3>
+    <div class="projects__grid">
+
+      <article class="card">
+        <div class="card__head">
+          <span class="card__status status--live">actif</span>
+          <span class="card__lang">n8n</span>
+        </div>
+        <h3>Veille CVE automatisée</h3>
+        <p>Veille automatique des CVE critiques (CVSS ≥ 7) via l'API NVD. Tri par techno (Windows, Linux, Apache, Cisco) et alertes Discord dédiées chaque jour à 8h.</p>
+        <ul class="card__tags">
+          <li>n8n</li>
+          <li>API NVD</li>
+          <li>Discord</li>
+        </ul>
+        <a class="card__link" href="https://github.com/abcrossedlol/N8N_AUTOMATISATION/blob/main/CVE_VEILLE.json" target="_blank" rel="noopener">Voir le code →</a>
+      </article>
+
+      <article class="card">
+        <div class="card__head">
+          <span class="card__status status--live">actif</span>
+          <span class="card__lang">n8n</span>
+        </div>
+        <h3>Veille SSI quotidienne</h3>
+        <p>Agrégation de 4 flux RSS (CERT-FR, ANSSI, Graham Cluley, Krebs on Security), résumés automatiques en français par IA (Groq), envoyés sur Discord.</p>
+        <ul class="card__tags">
+          <li>n8n</li>
+          <li>RSS</li>
+          <li>IA / Groq</li>
+        </ul>
+        <a class="card__link" href="https://github.com/abcrossedlol/N8N_AUTOMATISATION/blob/main/SSI.json" target="_blank" rel="noopener">Voir le code →</a>
+      </article>
+
+      <article class="card">
+        <div class="card__head">
+          <span class="card__status status--live">actif</span>
+          <span class="card__lang">n8n</span>
+        </div>
+        <h3>Bot Discord expert SSI</h3>
+        <p>Bot Discord qui répond aux questions cybersécurité via la commande !ssi, propulsé par Groq (LLaMA 3.1) avec un prompt expert SSI/ISO 27001.</p>
+        <ul class="card__tags">
+          <li>n8n</li>
+          <li>Discord Bot</li>
+          <li>LLaMA 3.1</li>
+        </ul>
+        <a class="card__link" href="https://github.com/abcrossedlol/N8N_AUTOMATISATION/blob/main/AGENT_SSI.json" target="_blank" rel="noopener">Voir le code →</a>
+      </article>
+
+      <article class="card">
+        <div class="card__head">
+          <span class="card__status status--live">actif</span>
+          <span class="card__lang">n8n</span>
+        </div>
+        <h3>Recherche d'alternance automatisée</h3>
+        <p>Recherche automatisée d'offres d'alternance via JSearch et SerpAPI, enrichissement des contacts avec Hunter.io, export vers Google Sheets.</p>
+        <ul class="card__tags">
+          <li>n8n</li>
+          <li>API</li>
+          <li>Google Sheets</li>
+        </ul>
+        <a class="card__link" href="https://github.com/abcrossedlol/N8N_AUTOMATISATION/blob/main/RECHERCHE_ALTERNANCE.json" target="_blank" rel="noopener">Voir le code →</a>
+      </article>
+
+      <article class="card">
+        <div class="card__head">
+          <span class="card__status status--live">actif</span>
+          <span class="card__lang">n8n</span>
+        </div>
+        <h3>Sauvegarde automatique des workflows</h3>
+        <p>Sauvegarde automatique de tous les workflows n8n vers ce dépôt GitHub, pour garder un historique versionné de toutes les automatisations.</p>
+        <ul class="card__tags">
+          <li>n8n</li>
+          <li>GitHub API</li>
+          <li>Versioning</li>
+        </ul>
+        <a class="card__link" href="https://github.com/abcrossedlol/N8N_AUTOMATISATION/blob/main/BACKUP_N8N.json" target="_blank" rel="noopener">Voir le code →</a>
+      </article>
+
+      <article class="card">
+        <div class="card__head">
+          <span class="card__status status--live">actif</span>
+          <span class="card__lang">n8n</span>
+        </div>
+        <h3>Rapport météo moto</h3>
+        <p>Rapport météo quotidien pour 3 villes (Saint-Xandre, Niort, Surgères) : température, vent, pluie, conditions de conduite envoyées sur Discord matin et soir.</p>
+        <ul class="card__tags">
+          <li>n8n</li>
+          <li>Open-Meteo API</li>
+          <li>Discord</li>
+        </ul>
+        <a class="card__link" href="https://github.com/abcrossedlol/N8N_AUTOMATISATION/blob/main/METEO-MOTO.json" target="_blank" rel="noopener">Voir le code →</a>
+      </article>
+
+    </div>
+  </section>
+  
   <!-- ============ TRYHACKME ============ -->
   <section class="section" id="thm">
     <p class="section__log">004</p>
