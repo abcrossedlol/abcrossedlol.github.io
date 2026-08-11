@@ -107,7 +107,10 @@ sup { font-size: 0.6em; }
   font-size: clamp(0.8rem, 2vw, 0.95rem);
   color: var(--green);
   white-space: pre-wrap;
-  min-height: 190px;
+  height: 220px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--amber-dim) transparent;
 }
 .cursor {
   color: var(--amber);
