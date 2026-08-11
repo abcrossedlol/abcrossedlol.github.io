@@ -25,6 +25,7 @@ const completedLines = [];
 
 function render(partial) {
   target.textContent = completedLines.concat(partial).join('\n');
+  target.scrollTop = target.scrollHeight;
 }
 
 async function typeSequence() {
