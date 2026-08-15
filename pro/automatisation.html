@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Amaël Lavaysse — Automatisation pour commerces & TPE locales</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Caveat:wght@500;600&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#101a24;
+    --panel:#17232f;
+    --panel-2:#1e2c3a;
+    --paper:#eee7d8;
+    --paper-dim:#c9c0ab;
+    --copper:#c98a3e;
+    --copper-soft:#e0ab6a;
+    --teal:#5cab9d;
+    --line:#2a3a49;
+    --display: 'Fraunces', serif;
+    --hand: 'Caveat', cursive;
+    --body: 'Inter', sans-serif;
+    --mono: 'IBM Plex Mono', monospace;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--ink);
+    color:var(--paper);
+    font-family:var(--body);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;}
+  .wrap{max-width:960px;margin:0 auto;padding:0 28px;}
+
+  /* NAV */
+  header.nav{
+    padding:22px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .nav .wrap{display:flex;justify-content:space-between;align-items:center;}
+  .brand{font-family:var(--mono);font-size:0.9rem;letter-spacing:0.02em;color:var(--paper-dim);}
+  .brand b{color:var(--copper-soft);font-weight:500;}
+  .nav-cta{
+    font-family:var(--mono);
+    font-size:0.82rem;
+    padding:9px 16px;
+    border:1px solid var(--copper);
+    border-radius:3px;
+    color:var(--copper-soft);
+    text-decoration:none;
+    transition:background .15s ease;
+  }
+  .nav-cta:hover{background:rgba(201,138,62,0.12);}
+
+  /* HERO */
+  .hero{padding:80px 0 60px;}
+  .eyebrow{
+    font-family:var(--mono);
+    font-size:0.8rem;
+    color:var(--teal);
+    text-transform:uppercase;
+    letter-spacing:0.12em;
+    margin-bottom:22px;
+  }
+  h1{
+    font-family:var(--display);
+    font-weight:500;
+    font-size:clamp(2.1rem, 5vw, 3.4rem);
+    line-height:1.12;
+    margin:0 0 24px;
+    max-width:15ch;
+    color:var(--paper);
+  }
+  h1 em{
+    font-style:italic;
+    color:var(--copper-soft);
+  }
+  .hero p.lede{
+    font-size:1.1rem;
+    color:var(--paper-dim);
+    max-width:52ch;
+    margin:0 0 34px;
+  }
+  .hero-actions{display:flex;gap:14px;flex-wrap:wrap;}
+  .btn-primary{
+    font-family:var(--mono);
+    background:var(--copper);
+    color:var(--ink);
+    padding:14px 24px;
+    border-radius:3px;
+    text-decoration:none;
+    font-size:0.92rem;
+    font-weight:500;
+    transition:background .15s ease;
+  }
+  .btn-primary:hover{background:var(--copper-soft);}
+  .btn-ghost{
+    font-family:var(--mono);
+    padding:14px 24px;
+    border-radius:3px;
+    border:1px solid var(--line);
+    text-decoration:none;
+    font-size:0.92rem;
+    color:var(--paper-dim);
+  }
+
+  /* SIGNATURE: AVANT / APRES */
+  .signature{padding:50px 0 90px;}
+  .sig-label{
+    font-family:var(--mono);
+    font-size:0.8rem;
+    color:var(--paper-dim);
+    text-align:center;
+    margin-bottom:36px;
+    letter-spacing:0.08em;
+  }
+  .compare{
+    display:grid;
+    grid-template-columns:1fr auto 1fr;
+    gap:36px;
+    align-items:center;
+  }
+  .compare-arrow{
+    font-family:var(--display);
+    font-size:1.8rem;
+    color:var(--copper);
+  }
+  .board{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:6px;
+    padding:26px 24px;
+  }
+  .board h3{
+    margin:0 0 18px;
+    font-family:var(--mono);
+    font-size:0.78rem;
+    text-transform:uppercase;
+    letter-spacing:0.1em;
+    color:var(--paper-dim);
+  }
+  .board.before h3{color:#c17a5a;}
+  .board.after h3{color:var(--teal);}
+  .task{
+    font-family:var(--hand);
+    font-size:1.4rem;
+    line-height:1.5;
+    color:var(--paper-dim);
+    text-decoration:line-through;
+    text-decoration-color:#c17a5a;
+    text-decoration-thickness:2px;
+    margin-bottom:6px;
+  }
+  .task .time{
+    font-family:var(--mono);
+    font-size:0.75rem;
+    text-decoration:none;
+    color:#c17a5a;
+    display:inline-block;
+    margin-left:6px;
+  }
+  .task-clean{
+    font-family:var(--mono);
+    font-size:0.92rem;
+    color:var(--paper);
+    margin-bottom:12px;
+    display:flex;
+    justify-content:space-between;
+    gap:12px;
+  }
+  .task-clean .tag{color:var(--teal);}
+  .board.after{border-color:rgba(92,171,157,0.35);}
+
+  /* OFFERS */
+  section{padding:70px 0;border-top:1px solid var(--line);}
+  .section-head{margin-bottom:44px;}
+  .section-head .eyebrow{margin-bottom:14px;}
+  h2{
+    font-family:var(--display);
+    font-weight:500;
+    font-size:2rem;
+    margin:0;
+    color:var(--paper);
+  }
+  .offers-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+  }
+  .offer{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:6px;
+    padding:28px 24px;
+    display:flex;
+    flex-direction:column;
+  }
+  .offer.featured{
+    border-color:var(--copper);
+    background:var(--panel-2);
+  }
+  .offer .num{
+    font-family:var(--mono);
+    font-size:0.75rem;
+    color:var(--copper-soft);
+    margin-bottom:14px;
+  }
+  .offer h3{
+    font-family:var(--display);
+    font-size:1.3rem;
+    font-weight:500;
+    margin:0 0 10px;
+  }
+  .offer p.desc{
+    font-size:0.92rem;
+    color:var(--paper-dim);
+    margin:0 0 20px;
+    flex-grow:1;
+  }
+  .offer .price{
+    font-family:var(--mono);
+    font-size:1.1rem;
+    color:var(--paper);
+    padding-top:16px;
+    border-top:1px solid var(--line);
+  }
+  .offer .price small{
+    display:block;
+    font-size:0.72rem;
+    color:var(--paper-dim);
+    margin-top:4px;
+  }
+
+  /* PROCESS */
+  .steps{display:flex;flex-direction:column;gap:0;}
+  .step{
+    display:grid;
+    grid-template-columns:60px 1fr;
+    gap:20px;
+    padding:22px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .step:last-child{border-bottom:none;}
+  .step .n{
+    font-family:var(--mono);
+    color:var(--copper-soft);
+    font-size:0.95rem;
+  }
+  .step h4{margin:0 0 6px;font-family:var(--body);font-weight:600;font-size:1rem;}
+  .step p{margin:0;color:var(--paper-dim);font-size:0.92rem;}
+
+  /* PROOF */
+  .proof-row{
+    display:flex;
+    gap:14px;
+    flex-wrap:wrap;
+  }
+  .proof-item{
+    font-family:var(--mono);
+    font-size:0.85rem;
+    padding:10px 16px;
+    border:1px solid var(--line);
+    border-radius:3px;
+    text-decoration:none;
+    color:var(--paper-dim);
+  }
+  .proof-item:hover{border-color:var(--teal);color:var(--teal);}
+
+  /* CONTACT */
+  .contact-box{
+    background:var(--panel);
+    border:1px solid var(--copper);
+    border-radius:8px;
+    padding:44px;
+    text-align:center;
+  }
+  .contact-box h2{margin-bottom:14px;}
+  .contact-box p{color:var(--paper-dim);max-width:44ch;margin:0 auto 28px;}
+  .contact-links{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+
+  footer{padding:30px 0;font-family:var(--mono);font-size:0.78rem;color:var(--paper-dim);text-align:center;}
+
+  @media (max-width:720px){
+    .offers-grid{grid-template-columns:1fr;}
+    .compare{grid-template-columns:1fr;}
+    .compare-arrow{transform:rotate(90deg);text-align:center;}
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <div class="brand"><b>amaël</b> · automatisation locale</div>
+    <a href="#contact" class="nav-cta">Discuter 15 min →</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="eyebrow">La Rochelle · Niort · alentours</div>
+    <h1>Restez informé sur votre secteur, <em>sans y passer votre temps.</em></h1>
+    <p class="lede">Nouveautés fournisseurs, actualité réglementaire, concurrence locale — je mets en place une veille automatique qui vous fait un résumé clair chaque semaine, livrée en quelques jours, sans changer vos outils actuels.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">Un échange gratuit de 15 min</a>
+      <a href="#offres" class="btn-ghost">Voir les offres</a>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+  <section class="signature" style="border-top:1px solid var(--line);padding-top:60px;">
+    <div class="sig-label">— ce que ça change concrètement —</div>
+    <div class="compare">
+      <div class="board before">
+        <h3>Chaque semaine, à la main</h3>
+        <div class="task">Éplucher les nouveautés fournisseurs<span class="time">40 min</span></div>
+        <div class="task">Suivre l'actu réglementaire du secteur<span class="time">30 min</span></div>
+        <div class="task">Regarder ce que fait la concurrence<span class="time">35 min</span></div>
+        <div class="task">Chercher les tendances du moment<span class="time">25 min</span></div>
+      </div>
+      <div class="compare-arrow">→</div>
+      <div class="board after">
+        <h3>Automatisé</h3>
+        <div class="task-clean"><span>Nouveautés fournisseurs</span><span class="tag">résumé auto</span></div>
+        <div class="task-clean"><span>Actu réglementaire</span><span class="tag">alerte hebdo</span></div>
+        <div class="task-clean"><span>Concurrence locale</span><span class="tag">suivi continu</span></div>
+        <div class="task-clean"><span>Tendances secteur</span><span class="tag">résumé clair</span></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<section id="offres">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">L'offre</div>
+      <h2>Une chose faite bien, plutôt que trois faites vite</h2>
+    </div>
+    <div class="offers-grid" style="grid-template-columns:minmax(0,480px);justify-content:center;">
+      <div class="offer featured">
+        <div class="num">01</div>
+        <h3>Veille automatique métier</h3>
+        <p class="desc">Un système de veille adapté à votre secteur — fournisseurs, réglementation, concurrence locale, tendances — livré sous forme de résumé clair, envoyé automatiquement chaque semaine par email ou Discord.</p>
+        <div class="price">200 – 350 €<small>livré en 3 à 5 jours · réponse sous 48-72h pour tout ajustement</small></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Comment ça se passe</div>
+      <h2>Simple, en quatre étapes</h2>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="n">01</div>
+        <div><h4>Échange de 15 minutes</h4><p>On regarde ensemble ce que vous suivez à la main chaque semaine, et ce qui vaut vraiment le coup d'automatiser.</p></div>
+      </div>
+      <div class="step">
+        <div class="n">02</div>
+        <div><h4>Proposition claire</h4><p>Vous recevez un prix fixe et un délai avant de valider quoi que ce soit. Pas de surprise.</p></div>
+      </div>
+      <div class="step">
+        <div class="n">03</div>
+        <div><h4>Mise en place</h4><p>Je construis et teste l'automatisation avec vos outils existants — pas besoin d'en changer.</p></div>
+      </div>
+      <div class="step">
+        <div class="n">04</div>
+        <div><h4>Ça tourne, vous vérifiez</h4><p>Vous validez le résultat sur un cas réel, puis ça fonctionne seul. Besoin d'un ajustement plus tard ? Je réponds sous 48-72h.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Preuve, pas promesse</div>
+      <h2>Déjà en place, publiquement</h2>
+    </div>
+    <p style="color:var(--paper-dim);max-width:56ch;margin-bottom:24px;">Ces automatisations tournent déjà en conditions réelles — veille de sécurité informatique, résumés automatiques, alertes. Le code est public.</p>
+    <div class="proof-row">
+      <a class="proof-item" href="https://github.com/abcrossedlol/N8N_AUTOMATISATION" target="_blank" rel="noopener">→ Repo GitHub des automatisations</a>
+      <a class="proof-item" href="https://amaellavaysse.dev" target="_blank" rel="noopener">→ Portfolio complet</a>
+      <a class="proof-item" href="https://tryhackme.com/p/abcross" target="_blank" rel="noopener">→ Profil TryHackMe</a>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="contact-box">
+      <h2>On en parle ?</h2>
+      <p>15 minutes suffisent pour voir si ça vaut le coup. Aucun engagement, aucun jargon technique.</p>
+      <div class="contact-links">
+        <a class="btn-primary" href="mailto:contact@amaellavaysse.dev?subject=Automatisation%20pour%20mon%20entreprise">Écrire un email</a>
+        <a class="btn-ghost" href="tel:+33782946767">07 82 94 67 66</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  Amaël Lavaysse — automatisation locale · La Rochelle / Niort
+</footer>
+
+</body>
+</html>
