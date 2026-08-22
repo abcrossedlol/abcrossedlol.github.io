@@ -1,475 +1,860 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Amaël Lavaysse — Automatisation pour commerces & TPE locales</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Caveat:wght@500;600&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<meta charset="utf-8">
+<script>document.documentElement.classList.add('js')</script>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Amaël Lavaysse, automatisations n8n pour PME et TPE</title>
+<meta name="description" content="Vos tâches répétitives ont un point commun : aucune n'a besoin de vous. Relances de factures, avis clients, rendez-vous, recopiage entre logiciels. Prix affichés à partir de 150 €, et vos flux vous appartiennent.">
+<meta name="theme-color" content="#0B0E14">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%230B0E14'/><rect x='9' y='9' width='13' height='13' rx='3' fill='%23E8A33D'/></svg>">
+<link rel="canonical" href="https://amaellavaysse.dev/pro/">
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:site_name" content="Amaël Lavaysse">
+<meta property="og:title" content="Amaël Lavaysse, automatisations n8n pour PME et TPE">
+<meta property="og:description" content="Vos tâches répétitives ont un point commun : aucune n'a besoin de vous. Prix affichés à partir de 150 €, et vos flux vous appartiennent.">
+<meta property="og:url" content="https://amaellavaysse.dev/pro/">
+<meta name="twitter:card" content="summary">
+
+<link rel="preload" href="assets/inter.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/jetbrains.woff2" as="font" type="font/woff2" crossorigin>
+
 <style>
-  :root{
-    --ink:#101a24;
-    --panel:#17232f;
-    --panel-2:#1e2c3a;
-    --paper:#eee7d8;
-    --paper-dim:#c9c0ab;
-    --copper:#c98a3e;
-    --copper-soft:#e0ab6a;
-    --teal:#5cab9d;
-    --line:#2a3a49;
-    --display: 'Fraunces', serif;
-    --hand: 'Caveat', cursive;
-    --body: 'Inter', sans-serif;
-    --mono: 'IBM Plex Mono', monospace;
-  }
-  *{box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
-  body{
-    margin:0;
-    background:var(--ink);
-    color:var(--paper);
-    font-family:var(--body);
-    line-height:1.6;
-    -webkit-font-smoothing:antialiased;
-  }
-  a{color:inherit;}
-  .wrap{max-width:960px;margin:0 auto;padding:0 28px;}
+@font-face{font-family:'Inter var';src:url('assets/inter.woff2') format('woff2');font-weight:400 800;font-display:swap}
+@font-face{font-family:'JB Mono';src:url('assets/jetbrains.woff2') format('woff2');font-weight:400 800;font-display:swap}
 
-  /* NAV */
-  header.nav{
-    padding:22px 0;
-    border-bottom:1px solid var(--line);
-  }
-  .nav .wrap{display:flex;justify-content:space-between;align-items:center;}
-  .brand{font-family:var(--mono);font-size:0.9rem;letter-spacing:0.02em;color:var(--paper-dim);}
-  .brand b{color:var(--copper-soft);font-weight:500;}
-  .nav-cta{
-    font-family:var(--mono);
-    font-size:0.82rem;
-    padding:9px 16px;
-    border:1px solid var(--copper);
-    border-radius:3px;
-    color:var(--copper-soft);
-    text-decoration:none;
-    transition:background .15s ease;
-  }
-  .nav-cta:hover{background:rgba(201,138,62,0.12);}
+:root{
+  --bg:#0B0E14;
+  --surface:#12151F;
+  --surface-2:#171B27;
+  --surface-3:#1C2130;
+  --border:#232838;
+  --border-soft:#1B1F2C;
+  --text:#E6E8EB;
+  --muted:#8891A3;
+  --faint:#79818F;
+  --amber:#E8A33D;
+  --amber-dim:#8A6425;
+  --amber-wash:rgba(232,163,61,.10);
+  --green:#4CAF7D;
+  --red:#D64545;
+  --red-text:#E36A6A;
+  --mono:'JB Mono','JetBrains Mono',ui-monospace,SFMono-Regular,Consolas,monospace;
+  --sans:'Inter var','Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  --maxw:1140px;
+  --gut:clamp(20px,5vw,48px);
+}
 
-  /* HERO */
-  .hero{padding:80px 0 60px;}
-  .eyebrow{
-    font-family:var(--mono);
-    font-size:0.8rem;
-    color:var(--teal);
-    text-transform:uppercase;
-    letter-spacing:0.12em;
-    margin-bottom:22px;
-  }
-  h1{
-    font-family:var(--display);
-    font-weight:500;
-    font-size:clamp(2.1rem, 5vw, 3.4rem);
-    line-height:1.12;
-    margin:0 0 24px;
-    max-width:15ch;
-    color:var(--paper);
-  }
-  h1 em{
-    font-style:italic;
-    color:var(--copper-soft);
-  }
-  .hero p.lede{
-    font-size:1.1rem;
-    color:var(--paper-dim);
-    max-width:52ch;
-    margin:0 0 34px;
-  }
-  .hero-actions{display:flex;gap:14px;flex-wrap:wrap;}
-  .btn-primary{
-    font-family:var(--mono);
-    background:var(--copper);
-    color:var(--ink);
-    padding:14px 24px;
-    border-radius:3px;
-    text-decoration:none;
-    font-size:0.92rem;
-    font-weight:500;
-    transition:background .15s ease;
-  }
-  .btn-primary:hover{background:var(--copper-soft);}
-  .btn-ghost{
-    font-family:var(--mono);
-    padding:14px 24px;
-    border-radius:3px;
-    border:1px solid var(--line);
-    text-decoration:none;
-    font-size:0.92rem;
-    color:var(--paper-dim);
-  }
+*,*::before,*::after{box-sizing:border-box}
+html,body{overflow-x:clip}
+[hidden]{display:none !important}
+html{scroll-behavior:smooth;scroll-padding-top:92px;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--text);
+  font-family:var(--sans);font-size:16px;line-height:1.7;font-weight:400;
+  -webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:inherit}
+p{margin:0}
+ol,ul{margin:0;padding:0;list-style:none}
+/* la voix humaine parle en Inter, la voix machine parle en mono */
+h1,h2,h3{font-family:var(--sans);font-weight:800;margin:0;line-height:1.1;letter-spacing:-.03em;text-wrap:balance}
+:focus-visible{outline:2px solid var(--amber);outline-offset:3px;border-radius:3px}
+::selection{background:rgba(232,163,61,.26)}
 
-  /* SIGNATURE: AVANT / APRES */
-  .signature{padding:50px 0 90px;}
-  .sig-label{
-    font-family:var(--mono);
-    font-size:0.8rem;
-    color:var(--paper-dim);
-    text-align:center;
-    margin-bottom:36px;
-    letter-spacing:0.08em;
-  }
-  .compare{
-    display:grid;
-    grid-template-columns:1fr auto 1fr;
-    gap:36px;
-    align-items:center;
-  }
-  .compare-arrow{
-    font-family:var(--display);
-    font-size:1.8rem;
-    color:var(--copper);
-  }
-  .board{
-    background:var(--panel);
-    border:1px solid var(--line);
-    border-radius:6px;
-    padding:26px 24px;
-  }
-  .board h3{
-    margin:0 0 18px;
-    font-family:var(--mono);
-    font-size:0.78rem;
-    text-transform:uppercase;
-    letter-spacing:0.1em;
-    color:var(--paper-dim);
-  }
-  .board.before h3{color:#c17a5a;}
-  .board.after h3{color:var(--teal);}
-  .task{
-    font-family:var(--hand);
-    font-size:1.4rem;
-    line-height:1.5;
-    color:var(--paper-dim);
-    text-decoration:line-through;
-    text-decoration-color:#c17a5a;
-    text-decoration-thickness:2px;
-    margin-bottom:6px;
-  }
-  .task .time{
-    font-family:var(--mono);
-    font-size:0.75rem;
-    text-decoration:none;
-    color:#c17a5a;
-    display:inline-block;
-    margin-left:6px;
-  }
-  .task-clean{
-    font-family:var(--mono);
-    font-size:0.92rem;
-    color:var(--paper);
-    margin-bottom:12px;
-    display:flex;
-    justify-content:space-between;
-    gap:12px;
-  }
-  .task-clean .tag{color:var(--teal);}
-  .board.after{border-color:rgba(92,171,157,0.35);}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--gut)}
 
-  /* OFFERS */
-  section{padding:70px 0;border-top:1px solid var(--line);}
-  .section-head{margin-bottom:44px;}
-  .section-head .eyebrow{margin-bottom:14px;}
-  h2{
-    font-family:var(--display);
-    font-weight:500;
-    font-size:2rem;
-    margin:0;
-    color:var(--paper);
-  }
-  .offers-grid{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:20px;
-  }
-  .offer{
-    background:var(--panel);
-    border:1px solid var(--line);
-    border-radius:6px;
-    padding:28px 24px;
-    display:flex;
-    flex-direction:column;
-  }
-  .offer.featured{
-    border-color:var(--copper);
-    background:var(--panel-2);
-  }
-  .offer .num{
-    font-family:var(--mono);
-    font-size:0.75rem;
-    color:var(--copper-soft);
-    margin-bottom:14px;
-  }
-  .offer h3{
-    font-family:var(--display);
-    font-size:1.3rem;
-    font-weight:500;
-    margin:0 0 10px;
-  }
-  .offer p.desc{
-    font-size:0.92rem;
-    color:var(--paper-dim);
-    margin:0 0 20px;
-    flex-grow:1;
-  }
-  .offer .price{
-    font-family:var(--mono);
-    font-size:1.1rem;
-    color:var(--paper);
-    padding-top:16px;
-    border-top:1px solid var(--line);
-  }
-  .offer .price small{
-    display:block;
-    font-size:0.72rem;
-    color:var(--paper-dim);
-    margin-top:4px;
-  }
+/* ---------- barre du haut ---------- */
+.top{position:fixed;top:0;left:0;right:0;z-index:60;
+  background:rgba(11,14,20,.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--border-soft)}
+.top__in{max-width:var(--maxw);margin:0 auto;padding:13px var(--gut);
+  display:flex;align-items:center;justify-content:space-between;gap:20px}
+.wordmark{display:flex;align-items:center;gap:9px;font-weight:700;font-size:15px;letter-spacing:-.022em;
+  text-decoration:none;white-space:nowrap}
+.wordmark i{width:7px;height:7px;border-radius:2px;background:var(--amber);flex:none}
+.nav{display:flex;align-items:center;gap:clamp(14px,2.2vw,26px)}
+.nav a{font-family:var(--mono);font-size:12.5px;color:var(--muted);text-decoration:none;transition:color .2s}
+.nav a:hover{color:var(--text)}
+.top__cta{font-family:var(--mono);font-size:12.5px;font-weight:700;text-decoration:none;
+  padding:9px 15px;border-radius:6px;background:var(--amber);color:#1A1204;transition:background .2s;
+  white-space:nowrap}
+.top__cta:hover{background:#F3B355}
 
-  /* PROCESS */
-  .steps{display:flex;flex-direction:column;gap:0;}
-  .step{
-    display:grid;
-    grid-template-columns:60px 1fr;
-    gap:20px;
-    padding:22px 0;
-    border-bottom:1px solid var(--line);
-  }
-  .step:last-child{border-bottom:none;}
-  .step .n{
-    font-family:var(--mono);
-    color:var(--copper-soft);
-    font-size:0.95rem;
-  }
-  .step h4{margin:0 0 6px;font-family:var(--body);font-weight:600;font-size:1rem;}
-  .step p{margin:0;color:var(--paper-dim);font-size:0.92rem;}
+/* ---------- vocabulaire commun ---------- */
+.kicker{display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:11.5px;
+  letter-spacing:.11em;text-transform:uppercase;color:var(--muted)}
+.kicker::before{content:"";width:7px;height:7px;border-radius:2px;background:var(--amber);flex:none}
 
-  /* PROOF */
-  .proof-row{
-    display:flex;
-    gap:14px;
-    flex-wrap:wrap;
-  }
-  .proof-item{
-    font-family:var(--mono);
-    font-size:0.85rem;
-    padding:10px 16px;
-    border:1px solid var(--line);
-    border-radius:3px;
-    text-decoration:none;
-    color:var(--paper-dim);
-  }
-  .proof-item:hover{border-color:var(--teal);color:var(--teal);}
+.btn{display:inline-block;font-family:var(--mono);font-size:13.5px;font-weight:700;text-decoration:none;
+  padding:13px 22px;border-radius:6px;background:var(--amber);color:#1A1204;border:1px solid transparent;
+  cursor:pointer;transition:background .2s}
+.btn:hover{background:#F3B355}
+.btn--ghost{background:transparent;color:var(--text);border-color:var(--border)}
+.btn--ghost:hover{background:var(--surface);border-color:var(--amber-dim)}
 
-  /* CONTACT */
-  .contact-box{
-    background:var(--panel);
-    border:1px solid var(--copper);
-    border-radius:8px;
-    padding:44px;
-    text-align:center;
-  }
-  .contact-box h2{margin-bottom:14px;}
-  .contact-box p{color:var(--paper-dim);max-width:44ch;margin:0 auto 28px;}
-  .contact-links{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+/* ---------- le héros ---------- */
+.hero{padding:calc(62px + clamp(30px,6vh,64px)) 0 clamp(50px,7vh,80px)}
+.hero__grid{display:grid;gap:clamp(34px,5vw,58px)}
+.hero h1{margin-top:18px;font-size:clamp(30px,4vw,48px);line-height:1.05;letter-spacing:-.038em;
+  max-width:15ch}
+.hero__lead{margin-top:20px;color:var(--muted);font-size:clamp(16px,1.25vw,18px);max-width:46ch}
+.hero__actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.proof{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px}
+.proof span{font-family:var(--mono);font-size:11.5px;color:var(--muted);
+  background:var(--surface);border:1px solid var(--border);border-radius:999px;padding:5px 12px}
 
-  footer{padding:30px 0;font-family:var(--mono);font-size:0.78rem;color:var(--paper-dim);text-align:center;}
+/* ---------- le flux, signature du site ---------- */
+.flow{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px;
+  box-shadow:0 24px 60px rgba(0,0,0,.35)}
+.flow__head{display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:2px 4px 15px;border-bottom:1px solid var(--border-soft)}
+.flow__name{font-family:var(--mono);font-size:11.5px;color:var(--muted)}
+.flow__state{display:flex;align-items:center;gap:7px;font-family:var(--mono);font-size:10.5px;
+  letter-spacing:.08em;text-transform:uppercase;color:var(--green)}
+.flow__state i{width:7px;height:7px;border-radius:50%;background:var(--green);flex:none}
+.flow__list{padding-top:20px}
+.fnode{position:relative;background:var(--surface-2);border:1px solid var(--border);border-radius:8px;
+  padding:11px 14px}
+.fnode+.fnode{margin-top:24px}
+.fnode+.fnode::before{content:"";position:absolute;left:24px;top:-25px;width:1px;height:25px;
+  background-image:linear-gradient(180deg,transparent,var(--amber),transparent),
+                   linear-gradient(var(--border),var(--border));
+  background-size:1px 13px,1px 100%;background-repeat:no-repeat;
+  background-position:0 -15px,0 0}
+.fnode__type{display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;
+  text-transform:uppercase;color:var(--amber)}
+.fnode__txt{display:block;margin-top:4px;font-size:14.5px;line-height:1.45}
+.fnode--end{border-color:rgba(76,175,125,.42)}
+.fnode--end .fnode__type{color:var(--green)}
+.js .fnode{animation:nodeOn 5.4s linear infinite;animation-delay:calc(var(--i) * .62s)}
+.js .fnode+.fnode::before{animation:wire 5.4s linear infinite;animation-delay:calc(var(--i) * .62s - .46s)}
+@keyframes nodeOn{
+  0%,3%{border-color:var(--border);background:var(--surface-2)}
+  8%,19%{border-color:var(--amber-dim);background:var(--surface-3)}
+  29%,100%{border-color:var(--border);background:var(--surface-2)}
+}
+@keyframes wire{
+  0%{background-position:0 -15px,0 0}
+  11%,100%{background-position:0 26px,0 0}
+}
 
-  @media (max-width:720px){
-    .offers-grid{grid-template-columns:1fr;}
-    .compare{grid-template-columns:1fr;}
-    .compare-arrow{transform:rotate(90deg);text-align:center;}
-  }
+/* ---------- rythme des sections ---------- */
+section{padding:clamp(62px,9vh,110px) 0;border-top:1px solid var(--border-soft)}
+.sec-head h2{margin-top:15px;font-size:clamp(26px,3.4vw,40px);max-width:19ch}
+.sec-lead{margin-top:18px;color:var(--muted);font-size:clamp(16px,1.25vw,17.5px);max-width:58ch}
+.src{margin-top:20px;font-family:var(--mono);font-size:11.5px;color:var(--faint)}
+
+.js .rv{opacity:0;transform:translate3d(0,18px,0);
+  transition:opacity .6s cubic-bezier(.2,.7,.2,1),transform .6s cubic-bezier(.2,.7,.2,1)}
+.js .rv.in{opacity:1;transform:none}
+.rv-2{transition-delay:.07s}.rv-3{transition-delay:.14s}.rv-4{transition-delay:.21s}
+
+/* ---------- ce que ça vous rend ---------- */
+.gains{display:grid;grid-template-columns:minmax(0,1fr);gap:26px 34px;margin-top:44px}
+@media (min-width:620px){.gains{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (min-width:1000px){.gains{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.gain{border-left:2px solid var(--amber-dim);padding-left:18px}
+.gain h3{font-size:clamp(19px,2.1vw,23px);color:var(--amber);letter-spacing:-.028em}
+.gain p{margin-top:10px;color:var(--muted);font-size:15px;line-height:1.62}
+
+/* ---------- le constat ---------- */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-top:40px}
+.stat{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:22px 20px}
+.stat b{display:block;font-family:var(--mono);font-weight:800;font-size:clamp(30px,4vw,42px);
+  color:var(--amber);line-height:1;letter-spacing:-.045em}
+.stat span{display:block;margin-top:12px;font-size:14.5px;color:var(--muted);line-height:1.55}
+
+/* ---------- les automatisations ---------- */
+.autos{display:grid;grid-template-columns:minmax(0,1fr);gap:14px;margin-top:44px}
+@media (min-width:680px){.autos{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.auto{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:20px;
+  display:flex;flex-direction:column}
+.auto__head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}
+.auto__num{font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;color:var(--amber);
+  background:var(--amber-wash);border-radius:4px;padding:3px 8px}
+.auto__tool{font-family:var(--mono);font-size:11.5px;color:var(--faint)}
+.auto h3{font-size:18px;font-weight:700;letter-spacing:-.022em;line-height:1.3}
+.mini{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin-top:14px}
+.mini span{font-family:var(--mono);font-size:10.8px;color:var(--muted);background:var(--surface-2);
+  border:1px solid var(--border-soft);border-radius:4px;padding:3px 7px;white-space:nowrap}
+.mini i{font-style:normal;font-family:var(--mono);font-size:11px;color:var(--faint)}
+.ba{margin-top:16px;display:grid;gap:10px}
+.ba__row{padding-left:12px;border-left:2px solid var(--border);font-size:14.5px;line-height:1.55}
+.ba__row b{display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;
+  text-transform:uppercase;font-weight:400;margin-bottom:4px}
+.ba__row--before{border-left-color:rgba(214,69,69,.4);color:var(--muted)}
+.ba__row--before b{color:var(--red-text)}
+.ba__row--before b::before{content:"- "}
+.ba__row--after{border-left-color:rgba(76,175,125,.45)}
+.ba__row--after b{color:var(--green)}
+.ba__row--after b::before{content:"+ "}
+
+/* ---------- le calcul ---------- */
+.calc{margin-top:44px;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:14px;
+  align-items:start}
+.calc__rows{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:6px 20px}
+.crow{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:15px 0;
+  border-bottom:1px solid var(--border-soft)}
+.crow:last-child{border-bottom:0}
+.crow>span{font-size:15px}
+.step{display:flex;align-items:center;gap:6px;flex:none}
+.step button{width:30px;height:30px;border-radius:6px;border:1px solid var(--border);
+  background:var(--surface-2);color:var(--text);font-family:var(--mono);font-size:15px;line-height:1;
+  cursor:pointer;transition:border-color .2s,color .2s}
+.step button:hover{border-color:var(--amber);color:var(--amber)}
+.step output{font-family:var(--mono);font-size:13px;min-width:8ch;text-align:center;color:var(--muted)}
+.calc__out{background:var(--surface);border:1px solid var(--amber-dim);border-radius:8px;
+  padding:22px 20px;position:sticky;top:92px}
+.calc__out .k{font-family:var(--mono);font-size:11px;letter-spacing:.09em;text-transform:uppercase;
+  color:var(--amber)}
+.calc__out .big{font-family:var(--mono);font-weight:800;font-size:clamp(26px,3.4vw,36px);line-height:1.1;
+  letter-spacing:-.04em;margin-top:12px}
+.calc__out .big em{font-style:normal;font-family:var(--sans);font-weight:400;font-size:14px;
+  letter-spacing:0;color:var(--muted);display:block;margin-top:6px}
+.calc__out hr{border:0;border-top:1px solid var(--border);margin:18px 0}
+.calc__out .note{font-size:14px;color:var(--muted);line-height:1.6}
+
+/* ---------- le déroulé ---------- */
+.steps{position:relative;display:grid;gap:26px;margin-top:44px}
+.stp__n{position:relative;z-index:1;display:inline-flex;align-items:center;justify-content:center;
+  width:28px;height:28px;border-radius:6px;background:var(--surface);border:1px solid var(--border);
+  font-family:var(--mono);font-size:12px;color:var(--amber)}
+.stp h3{margin-top:14px;font-size:clamp(18px,2.1vw,22px);font-weight:700;letter-spacing:-.025em}
+.stp p{margin-top:9px;color:var(--muted);font-size:15px;line-height:1.62}
+@media (min-width:820px){
+  .steps{grid-template-columns:repeat(3,minmax(0,1fr));gap:0}
+  .steps::before{content:"";position:absolute;left:14px;right:14px;top:13px;height:1px;
+    background:var(--border-soft)}
+  .stp{padding-right:34px}
+}
+
+/* ---------- mes engagements ---------- */
+.quote{margin-top:38px;border-left:2px solid var(--amber-dim);padding-left:20px;max-width:36ch;
+  font-size:clamp(18px,2.2vw,24px);font-weight:800;line-height:1.35;letter-spacing:-.028em}
+.quote small{display:block;margin-top:12px;font-family:var(--mono);font-size:11.5px;font-weight:400;
+  letter-spacing:.03em;color:var(--faint);line-height:1.6}
+.vows{display:grid;grid-template-columns:minmax(0,1fr);gap:14px;margin-top:36px}
+@media (min-width:820px){.vows{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.vow{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:22px 20px}
+.vow__k{font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;
+  color:var(--amber)}
+.vow h3{margin-top:12px;font-size:17px;font-weight:700;letter-spacing:-.022em;line-height:1.34}
+.vow p{margin-top:10px;color:var(--muted);font-size:14.5px;line-height:1.62}
+.vow p+p{margin-top:12px}
+
+/* ---------- les prix ---------- */
+.pgroup{margin-top:40px}
+.pgroup__lb{display:flex;align-items:center;gap:12px;font-family:var(--mono);font-size:11px;
+  letter-spacing:.11em;text-transform:uppercase;color:var(--faint);margin-bottom:14px}
+.pgroup__lb::after{content:"";height:1px;flex:1;background:var(--border-soft)}
+.prices{display:grid;grid-template-columns:minmax(0,1fr);gap:14px}
+@media (min-width:680px){.prices{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.price{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:24px 22px;
+  display:flex;flex-direction:column}
+.price--hi{border-color:var(--amber-dim);background:linear-gradient(180deg,var(--amber-wash),var(--surface) 58%)}
+.price .tag{font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;
+  color:var(--amber)}
+.price .amt{font-family:var(--mono);font-weight:800;font-size:clamp(32px,4.2vw,44px);letter-spacing:-.05em;
+  margin-top:12px;line-height:1}
+.price--hi .amt{color:var(--amber)}
+.price .amt small{font-family:var(--mono);font-size:13px;font-weight:400;letter-spacing:0;
+  color:var(--muted);margin-left:6px}
+.price h3{font-size:16.5px;font-weight:700;margin-top:16px;line-height:1.4;letter-spacing:-.02em}
+.price p{margin-top:10px;color:var(--muted);font-size:14.5px;line-height:1.62}
+.price ul{margin-top:14px;display:grid;gap:7px}
+.price li{position:relative;padding-left:18px;font-size:14px;color:var(--muted);line-height:1.5}
+.price li::before{content:"";position:absolute;left:0;top:.55em;width:7px;height:7px;border-radius:2px;
+  background:var(--green)}
+.price .when{margin-top:auto;padding-top:20px;font-family:var(--mono);font-size:11.5px;color:var(--faint)}
+.price-note{margin-top:26px;font-size:15px;color:var(--muted)}
+
+/* ---------- les questions ---------- */
+.faq{margin-top:38px;max-width:76ch}
+details{border-top:1px solid var(--border-soft)}
+details:last-of-type{border-bottom:1px solid var(--border-soft)}
+summary{list-style:none;cursor:pointer;padding:19px 40px 19px 0;position:relative;
+  font-weight:700;font-size:clamp(15.5px,1.6vw,17.5px);letter-spacing:-.022em;line-height:1.45}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";position:absolute;right:4px;top:50%;transform:translateY(-50%);
+  font-family:var(--mono);font-size:18px;font-weight:400;color:var(--amber);line-height:1}
+details[open] summary::after{content:"\2212"}
+details p{padding:0 0 22px;color:var(--muted);max-width:64ch;font-size:15.5px}
+
+/* ---------- on se parle ---------- */
+.talk{display:grid;grid-template-columns:minmax(0,1fr);gap:clamp(28px,4vw,48px);margin-top:38px;
+  align-items:start}
+@media (min-width:900px){.talk{grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr)}}
+.talk__lead{color:var(--muted);font-size:16px;max-width:46ch}
+.mail{display:inline-block;margin:20px 0 4px;font-family:var(--mono);font-weight:800;
+  font-size:clamp(17px,2.6vw,29px);letter-spacing:-.04em;color:var(--amber);text-decoration:none;
+  border-bottom:2px solid rgba(232,163,61,.3);padding-bottom:3px;overflow-wrap:anywhere;
+  transition:color .2s,border-color .2s}
+.mail:hover{color:#F3B355;border-bottom-color:#F3B355}
+.talk__note{margin-top:22px;color:var(--faint);font-size:14.5px;line-height:1.6}
+.card-reach{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:22px 20px}
+.card-reach h3{font-size:16.5px;font-weight:700;letter-spacing:-.02em}
+.card-reach ol{margin-top:16px;display:grid;gap:12px}
+.card-reach li{display:flex;gap:12px;align-items:baseline;font-size:14.5px;color:var(--muted);
+  line-height:1.55}
+.card-reach li b{font-family:var(--mono);font-size:11px;color:var(--amber);flex:none;width:2ch;
+  font-weight:400}
+.reach{margin-top:20px;padding-top:18px;border-top:1px solid var(--border-soft);display:grid;gap:4px}
+.reach a{display:block;text-decoration:none;padding:8px 0}
+.reach .lb{display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;
+  text-transform:uppercase;color:var(--faint)}
+.reach .vl{display:block;margin-top:3px;font-family:var(--mono);font-size:14px;color:var(--text);
+  overflow-wrap:anywhere;transition:color .2s}
+.reach a:hover .vl{color:var(--amber)}
+
+/* ---------- pied de page ---------- */
+footer{border-top:1px solid var(--border-soft);padding:34px 0 42px}
+footer .wrap{display:flex;flex-wrap:wrap;gap:12px 32px;align-items:baseline;justify-content:space-between}
+footer p{font-size:14.5px;color:var(--muted)}
+footer a{color:var(--amber);text-decoration:none;border-bottom:1px solid rgba(232,163,61,.3)}
+footer .fine{font-family:var(--mono);font-size:11.5px;color:var(--faint)}
+
+/* ---------- barre d'action, téléphones seulement ---------- */
+.actionbar{display:none}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .js .rv{opacity:1;transform:none;transition:none}
+  .js .fnode,.js .fnode+.fnode::before{animation:none}
+}
+@media (min-width:1000px){
+  .hero__grid{grid-template-columns:minmax(0,1fr) minmax(0,.92fr);align-items:center}
+  .hero__copy{grid-column:1;grid-row:1}
+  .hero__grid .flow{grid-column:2;grid-row:1}
+}
+@media (max-width:900px){
+  .calc{grid-template-columns:1fr}
+  .calc__out{position:static}
+}
+@media (max-width:760px){
+  .nav,.top__cta{display:none}
+  body{padding-bottom:78px}
+  .actionbar{display:grid;grid-template-columns:1fr 1fr;gap:10px;position:fixed;left:0;right:0;bottom:0;
+    z-index:60;padding:10px var(--gut) calc(10px + env(safe-area-inset-bottom));
+    background:rgba(11,14,20,.95);backdrop-filter:blur(10px);border-top:1px solid var(--border)}
+  .ab{display:block;text-align:center;font-family:var(--mono);font-size:13.5px;font-weight:700;
+    text-decoration:none;padding:13px 10px;border-radius:6px;border:1px solid var(--border);
+    background:var(--surface);color:var(--text)}
+  .ab--main{background:var(--amber);color:#1A1204;border-color:transparent}
+}
+@media (max-width:560px){
+  .crow{flex-direction:column;align-items:flex-start;gap:10px}
+  .step output{min-width:7ch;text-align:left}
+}
 </style>
 </head>
 <body>
 
-<header class="nav">
-  <div class="wrap">
-    <div class="brand"><b>amaël</b> · automatisation locale</div>
-    <a href="#contact" class="nav-cta">Discuter 15 min →</a>
+<header class="top">
+  <div class="top__in">
+    <a class="wordmark" href="#top"><i aria-hidden="true"></i>Amaël Lavaysse</a>
+    <nav class="nav" aria-label="Sections du site">
+      <a href="#gains">ce que ça rend</a>
+      <a href="#automatisations">les automatisations</a>
+      <a href="#prix">les prix</a>
+      <a href="#faq">questions</a>
+    </nav>
+    <a class="top__cta" href="#parler">parler de votre cas</a>
   </div>
 </header>
 
-<section class="hero">
-  <div class="wrap">
-    <div class="eyebrow">La Rochelle · Niort · alentours</div>
-    <h1>Vos tâches répétitives peuvent <em>tourner toutes seules.</em></h1>
-    <p class="lede">Veille, relances clients, avis, prise de contact — j'automatise ce qui vous prend du temps chaque semaine, avec des outils simples que vous gardez déjà. On regarde ensemble ce qui vaut le coup, sans jargon technique.</p>
-    <div class="hero-actions">
-      <a href="#contact" class="btn-primary">Un échange gratuit de 15 min</a>
-      <a href="#offres" class="btn-ghost">Voir les offres</a>
-    </div>
-  </div>
-</section>
+<main id="top">
 
-<div class="wrap">
-  <section class="signature" style="border-top:1px solid var(--line);padding-top:60px;">
-    <div class="sig-label">— ce que ça change concrètement —</div>
-    <div class="compare">
-      <div class="board before">
-        <h3>Chaque semaine, à la main</h3>
-        <div class="task">Éplucher les nouveautés fournisseurs<span class="time">40 min</span></div>
-        <div class="task">Suivre l'actu réglementaire du secteur<span class="time">30 min</span></div>
-        <div class="task">Regarder ce que fait la concurrence<span class="time">35 min</span></div>
-        <div class="task">Chercher les tendances du moment<span class="time">25 min</span></div>
+<!-- le héros -->
+<div class="hero">
+  <div class="wrap hero__grid">
+
+    <div class="hero__copy">
+      <p class="kicker">Automatisations n8n pour PME et TPE</p>
+      <h1>Vos tâches répétitives ont un point commun. Aucune n'a besoin de vous.</h1>
+      <p class="hero__lead">Je relie vos outils une seule fois. Après, les relances partent, les avis se
+        demandent, les rendez-vous se calent. Et vos soirées vous reviennent.</p>
+      <div class="hero__actions">
+        <a class="btn" href="#parler">parler de votre cas</a>
+        <a class="btn btn--ghost" href="#prix">voir les prix</a>
       </div>
-      <div class="compare-arrow">→</div>
-      <div class="board after">
-        <h3>Automatisé</h3>
-        <div class="task-clean"><span>Nouveautés fournisseurs</span><span class="tag">résumé auto</span></div>
-        <div class="task-clean"><span>Actu réglementaire</span><span class="tag">alerte hebdo</span></div>
-        <div class="task-clean"><span>Concurrence locale</span><span class="tag">suivi continu</span></div>
-        <div class="task-clean"><span>Tendances secteur</span><span class="tag">résumé clair</span></div>
+      <div class="proof">
+        <span>à partir de 150 €</span>
+        <span>livré en une semaine</span>
+        <span>hébergé en France</span>
+        <span>vos flux vous appartiennent</span>
       </div>
     </div>
-  </section>
+
+    <div class="flow">
+      <div class="flow__head">
+        <span class="flow__name">un exemple : la relance de facture</span>
+        <span class="flow__state"><i aria-hidden="true"></i>en marche</span>
+      </div>
+      <ol class="flow__list">
+        <li class="fnode" style="--i:0">
+          <span class="fnode__type">déclencheur</span>
+          <span class="fnode__txt">Une facture dépasse sept jours de retard</span>
+        </li>
+        <li class="fnode" style="--i:1">
+          <span class="fnode__type">condition</span>
+          <span class="fnode__txt">Elle est toujours impayée ?</span>
+        </li>
+        <li class="fnode" style="--i:2">
+          <span class="fnode__type">action</span>
+          <span class="fnode__txt">Un mail poli part au client</span>
+        </li>
+        <li class="fnode" style="--i:3">
+          <span class="fnode__type">attente</span>
+          <span class="fnode__txt">Trois jours, puis on regarde encore</span>
+        </li>
+        <li class="fnode fnode--end" style="--i:4">
+          <span class="fnode__type">fin</span>
+          <span class="fnode__txt">Payée. Le flux s'arrête tout seul.</span>
+        </li>
+      </ol>
+    </div>
+
+  </div>
 </div>
 
-<section>
+<!-- ce que ça vous rend -->
+<section id="gains" aria-labelledby="h-gains">
   <div class="wrap">
-    <div class="section-head">
-      <div class="eyebrow">Ce que j'automatise</div>
-      <h2>Quatre familles de tâches répétitives</h2>
+    <div class="sec-head">
+      <p class="kicker rv">Ce que ça vous rend</p>
+      <h2 id="h-gains" class="rv rv-2">Ce n'est pas du temps gagné. C'est du temps rendu.</h2>
+      <p class="sec-lead rv rv-3">Une automatisation ne vous fait pas travailler plus vite. Elle enlève
+        purement et simplement des choses de votre journée.</p>
     </div>
-    <div class="offers-grid" style="grid-template-columns:repeat(2,1fr);">
-      <div class="offer">
-        <div class="num">01</div>
-        <h3>Veille</h3>
-        <p class="desc">Fournisseurs, réglementation, concurrence — résumé automatique envoyé chaque semaine. 4 démos déjà en place et testées.</p>
-      </div>
-      <div class="offer">
-        <div class="num">02</div>
-        <h3>Relances & rappels</h3>
-        <p class="desc">Échéance à venir, rendez-vous à reprogrammer, devis en attente — l'automatisation prévient le client au bon moment, sans y penser.</p>
-      </div>
-      <div class="offer">
-        <div class="num">03</div>
+    <div class="gains">
+      <div class="gain rv"><h3>Vos soirées</h3>
+        <p>Les factures et les relances ne se font plus après le dîner. Elles se font pendant que vous
+          faites autre chose.</p></div>
+      <div class="gain rv rv-2"><h3>Votre trésorerie</h3>
+        <p>Un impayé relancé le bon jour rentre plus vite qu'un impayé relancé quand on y repense.</p></div>
+      <div class="gain rv rv-3"><h3>Vos avis clients</h3>
+        <p>Ils arrivent tout seuls, deux jours après la prestation. Vous n'avez plus à oser demander.</p></div>
+      <div class="gain rv rv-4"><h3>Votre tête</h3>
+        <p>Plus une seule chose à retenir. Le flux se souvient à votre place, tous les jours, sans faillir.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- le constat -->
+<section id="constat" aria-labelledby="h-constat">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="kicker rv">Le constat</p>
+      <h2 id="h-constat" class="rv rv-2">Le soir, il reste la paperasse</h2>
+      <p class="sec-lead rv rv-3">Les devis se font entre deux rendez-vous. Les factures se font le soir ou le
+        week-end. Les relances, quand on y pense. Les avis clients, presque jamais.</p>
+    </div>
+    <div class="stats">
+      <div class="stat rv rv-2"><b>47 %</b><span>des dirigeants de TPE jugent l'administratif très stressant</span></div>
+      <div class="stat rv rv-3"><b>63 %</b><span>y passent jusqu'à une demi-journée par semaine</span></div>
+      <div class="stat rv rv-4"><b>96 %</b><span>se disent épuisés, inquiets ou découragés</span></div>
+    </div>
+    <p class="src rv rv-4">Enquête Shine reprise par TPE Mag, et enquête SDI auprès de 1 679 dirigeants.</p>
+  </div>
+</section>
+
+<!-- les automatisations -->
+<section id="automatisations" aria-labelledby="h-auto">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="kicker rv">Les automatisations</p>
+      <h2 id="h-auto" class="rv rv-2">Quatre choses qui tournent sans vous</h2>
+      <p class="sec-lead rv rv-3">Ce sont les quatre que je construis le plus souvent. Si la vôtre n'est pas
+        dans la liste, elle se construit aussi.</p>
+    </div>
+    <div class="autos">
+      <article class="auto rv">
+        <div class="auto__head"><span class="auto__num">01</span><span class="auto__tool">n8n</span></div>
+        <h3>Relances de factures</h3>
+        <div class="mini" aria-hidden="true">
+          <span>facture émise</span><i>&rarr;</i><span>7 jours</span><i>&rarr;</i><span>relance</span><i>&rarr;</i><span>payée</span>
+        </div>
+        <div class="ba">
+          <div class="ba__row ba__row--before"><b>avant</b>Vous regardez qui n'a pas payé, vous écrivez, vous
+            notez de relancer encore.</div>
+          <div class="ba__row ba__row--after"><b>après</b>La relance part toute seule au bon moment, poliment,
+            et s'arrête dès que le virement arrive.</div>
+        </div>
+      </article>
+      <article class="auto rv rv-2">
+        <div class="auto__head"><span class="auto__num">02</span><span class="auto__tool">n8n</span></div>
         <h3>Avis clients</h3>
-        <p class="desc">Demande automatique d'avis Google après une prestation, envoyée au bon moment pour maximiser les réponses.</p>
-      </div>
-      <div class="offer">
-        <div class="num">04</div>
-        <h3>Capture de leads</h3>
-        <p class="desc">Chaque nouveau contact (formulaire, appel manqué) tombe automatiquement dans un fichier de suivi, avec notification immédiate.</p>
-      </div>
-    </div>
-    <p style="color:var(--paper-dim);font-size:0.9rem;margin-top:20px;">Votre besoin ne rentre dans aucune de ces cases ? On en discute quand même — la plupart des tâches répétitives se ramènent à une de ces logiques.</p>
-  </div>
-</section>
-
-<section id="offres">
-  <div class="wrap">
-    <div class="section-head">
-      <div class="eyebrow">Les offres</div>
-      <h2>Deux niveaux, selon votre besoin</h2>
-    </div>
-    <div class="offers-grid">
-      <div class="offer">
-        <div class="num">01</div>
-        <h3>Automatisation standard</h3>
-        <p class="desc">Basée sur une des 4 familles ci-dessus, avec des outils déjà éprouvés (sources officielles, Google Sheets, Gmail). Livrée rapidement, sans recherche supplémentaire.</p>
-        <div class="price">100 – 150 €<small>livré en 2-3 jours · réponse sous 48-72h pour tout ajustement</small></div>
-      </div>
-      <div class="offer featured">
-        <div class="num">02</div>
-        <h3>Automatisation sur-mesure</h3>
-        <p class="desc">Votre besoin sort des cas standards — un logiciel spécifique, une source précise, une logique plus complexe ? On construit la solution adaptée à votre cas.</p>
-        <div class="price">300 – 500 €<small>livré en 4-6 jours · réponse sous 48-72h pour tout ajustement</small></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section>
-  <div class="wrap">
-    <div class="section-head">
-      <div class="eyebrow">En option</div>
-      <h2>Après la mise en place</h2>
-    </div>
-    <div class="offers-grid">
-      <div class="offer">
-        <div class="num">+</div>
-        <h3>Pack Assistance</h3>
-        <p class="desc">Une question sur l'utilisation, ou l'automatisation qui tombe en panne ? Je m'en occupe. Aucune modification ou ajout inclus dans cette formule.</p>
-        <div class="price">15 €/mois<small>réponse sous 48-72h</small></div>
-      </div>
-      <div class="offer">
-        <div class="num">+</div>
-        <h3>Pack Maintenance</h3>
-        <p class="desc">Tout ce qui est dans le pack Assistance, plus jusqu'à 2 petites modifications par mois (mot-clé, fréquence, canal de diffusion). Au-delà, ou pour un ajout plus conséquent, un nouveau devis est proposé.</p>
-        <div class="price">35 €/mois<small>réponse sous 48-72h</small></div>
-      </div>
+        <div class="mini" aria-hidden="true">
+          <span>prestation finie</span><i>&rarr;</i><span>2 jours</span><i>&rarr;</i><span>demande</span><i>&rarr;</i><span>avis publié</span>
+        </div>
+        <div class="ba">
+          <div class="ba__row ba__row--before"><b>avant</b>Vous savez qu'il faudrait demander. Vous ne demandez pas.</div>
+          <div class="ba__row ba__row--after"><b>après</b>Le message part deux jours après la prestation. Une
+            fois, sans insister.</div>
+        </div>
+      </article>
+      <article class="auto rv rv-3">
+        <div class="auto__head"><span class="auto__num">03</span><span class="auto__tool">n8n</span></div>
+        <h3>Prise de rendez-vous</h3>
+        <div class="mini" aria-hidden="true">
+          <span>demande client</span><i>&rarr;</i><span>créneaux libres</span><i>&rarr;</i><span>agenda</span><i>&rarr;</i><span>confirmation</span>
+        </div>
+        <div class="ba">
+          <div class="ba__row ba__row--before"><b>avant</b>Trois allers-retours par mail pour caler une heure.</div>
+          <div class="ba__row ba__row--after"><b>après</b>Le client choisit un créneau libre, l'agenda se
+            remplit, la confirmation part.</div>
+        </div>
+      </article>
+      <article class="auto rv rv-4">
+        <div class="auto__head"><span class="auto__num">04</span><span class="auto__tool">n8n</span></div>
+        <h3>Recopiage entre logiciels</h3>
+        <div class="mini" aria-hidden="true">
+          <span>saisie unique</span><i>&rarr;</i><span>devis</span><i>&rarr;</i><span>compta</span><i>&rarr;</i><span>fichier client</span>
+        </div>
+        <div class="ba">
+          <div class="ba__row ba__row--before"><b>avant</b>La même information saisie deux fois, dans deux outils
+            qui ne se parlent pas.</div>
+          <div class="ba__row ba__row--after"><b>après</b>Elle est saisie une fois. Elle arrive partout où elle
+            doit arriver.</div>
+        </div>
+      </article>
     </div>
   </div>
 </section>
 
-<section>
+<!-- le calcul -->
+<section id="compter" aria-labelledby="h-calc">
   <div class="wrap">
-    <div class="section-head">
-      <div class="eyebrow">Comment ça se passe</div>
-      <h2>Simple, en quatre étapes</h2>
+    <div class="sec-head">
+      <p class="kicker rv">Le calcul</p>
+      <h2 id="h-calc" class="rv rv-2">Comptez vous-même</h2>
+      <p class="sec-lead rv rv-3">Mettez vos chiffres, pas les miens.</p>
     </div>
-    <div class="steps">
-      <div class="step">
-        <div class="n">01</div>
-        <div><h4>Échange de 15 minutes</h4><p>On regarde ensemble ce que vous suivez à la main chaque semaine, et ce qui vaut vraiment le coup d'automatiser.</p></div>
+    <div class="calc rv rv-2">
+      <div class="calc__rows">
+        <div class="crow">
+          <span>Relances de factures</span>
+          <div class="step" data-task="relances">
+            <button type="button" data-d="-15" aria-label="Moins 15 minutes sur les relances de factures">&minus;</button>
+            <output aria-live="off">45 min</output>
+            <button type="button" data-d="15" aria-label="Plus 15 minutes sur les relances de factures">+</button>
+          </div>
+        </div>
+        <div class="crow">
+          <span>Avis clients</span>
+          <div class="step" data-task="avis">
+            <button type="button" data-d="-15" aria-label="Moins 15 minutes sur les avis clients">&minus;</button>
+            <output aria-live="off">20 min</output>
+            <button type="button" data-d="15" aria-label="Plus 15 minutes sur les avis clients">+</button>
+          </div>
+        </div>
+        <div class="crow">
+          <span>Prise de rendez-vous</span>
+          <div class="step" data-task="rdv">
+            <button type="button" data-d="-15" aria-label="Moins 15 minutes sur la prise de rendez-vous">&minus;</button>
+            <output aria-live="off">60 min</output>
+            <button type="button" data-d="15" aria-label="Plus 15 minutes sur la prise de rendez-vous">+</button>
+          </div>
+        </div>
+        <div class="crow">
+          <span>Recopiage entre logiciels</span>
+          <div class="step" data-task="recopiage">
+            <button type="button" data-d="-15" aria-label="Moins 15 minutes sur le recopiage entre logiciels">&minus;</button>
+            <output aria-live="off">90 min</output>
+            <button type="button" data-d="15" aria-label="Plus 15 minutes sur le recopiage entre logiciels">+</button>
+          </div>
+        </div>
       </div>
-      <div class="step">
-        <div class="n">02</div>
-        <div><h4>Proposition claire</h4><p>Vous recevez un prix fixe et un délai avant de valider quoi que ce soit. Pas de surprise.</p></div>
-      </div>
-      <div class="step">
-        <div class="n">03</div>
-        <div><h4>Mise en place</h4><p>Je construis et teste l'automatisation avec vos outils existants — pas besoin d'en changer.</p></div>
-      </div>
-      <div class="step">
-        <div class="n">04</div>
-        <div><h4>Ça tourne, vous vérifiez</h4><p>Vous validez le résultat sur un cas réel, puis ça fonctionne seul. Besoin d'un ajustement plus tard ? Je réponds sous 48-72h.</p></div>
+      <div class="calc__out">
+        <div class="k">ce que ça vous rend</div>
+        <div class="big" id="perWeek" role="status" aria-live="polite">3 h 35 <em>par semaine</em></div>
+        <hr>
+        <div class="big" id="perYear">21 <em>journées de travail par an</em></div>
+        <hr>
+        <p class="note">À 15 € par mois d'assistance, la question n'est pas combien ça coûte. C'est combien de
+          soirées ça vous rend.</p>
       </div>
     </div>
   </div>
 </section>
 
-<section>
+<!-- le déroulé -->
+<section id="deroule" aria-labelledby="h-etapes">
   <div class="wrap">
-    <div class="section-head">
-      <div class="eyebrow">Preuve, pas promesse</div>
-      <h2>Déjà en place, publiquement</h2>
+    <div class="sec-head">
+      <p class="kicker rv">Le déroulé</p>
+      <h2 id="h-etapes" class="rv rv-2">Trois étapes, et c'est tout</h2>
     </div>
-    <p style="color:var(--paper-dim);max-width:56ch;margin-bottom:24px;">Ces automatisations tournent déjà en conditions réelles — veille de sécurité informatique, résumés automatiques, alertes. Le code est public.</p>
-    <div class="proof-row">
-      <a class="proof-item" href="https://github.com/abcrossedlol/N8N_AUTOMATISATION" target="_blank" rel="noopener">→ Repo GitHub des automatisations</a>
-      <a class="proof-item" href="https://amaellavaysse.dev" target="_blank" rel="noopener">→ Portfolio complet</a>
-      <a class="proof-item" href="https://tryhackme.com/p/abcross" target="_blank" rel="noopener">→ Profil TryHackMe</a>
+    <ol class="steps">
+      <li class="stp rv">
+        <span class="stp__n">01</span>
+        <h3>On regarde</h3>
+        <p>Trente minutes, en visio ou chez vous. Vous me montrez ce qui vous prend du temps. Je vous dis ce qui
+          s'automatise et ce qui ne s'automatise pas.</p>
+      </li>
+      <li class="stp rv rv-2">
+        <span class="stp__n">02</span>
+        <h3>Je construis</h3>
+        <p>Je monte le flux, je le teste avec vos vraies données, et je vous le montre en marche avant de le
+          brancher.</p>
+      </li>
+      <li class="stp rv rv-3">
+        <span class="stp__n">03</span>
+        <h3>Ça tourne</h3>
+        <p>Le flux tourne. Vous, vous ne voyez rien, parce qu'il n'y a rien à voir. C'est exactement le but.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- mes engagements -->
+<section id="engagements" aria-labelledby="h-vows">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="kicker rv">Mes engagements</p>
+      <h2 id="h-vows" class="rv rv-2">Les trois questions qu'on n'ose pas poser</h2>
+      <p class="sec-lead rv rv-3">Et si ça casse, et si vous partez, et où vont les données de mes clients.
+        Les voici traitées avant que vous ayez à demander.</p>
+    </div>
+    <div class="quote rv rv-2">« Le workflow restait mort pendant deux jours. »
+      <small>Un utilisateur de n8n, dans un avis public</small></div>
+    <div class="vows">
+      <div class="vow rv">
+        <div class="vow__k">si ça casse</div>
+        <h3>Je le sais avant vous</h3>
+        <p>Une interface change, un mot de passe expire, un service tombe. Ça arrive, et c'est la peur numéro un.</p>
+        <p>Chaque flux suivi est surveillé. S'il s'arrête, je reçois l'alerte, et je répare sous 48 heures
+          ouvrées.</p>
+      </div>
+      <div class="vow rv rv-2">
+        <div class="vow__k">si vous partez</div>
+        <h3>Vous partez avec tout</h3>
+        <p>Les flux vous appartiennent. Vous repartez avec les fichiers et la documentation.</p>
+        <p>n8n est un outil libre et répandu, donc n'importe quel prestataire reprend derrière moi. Vous ne
+          serez jamais coincé avec moi.</p>
+      </div>
+      <div class="vow rv rv-3">
+        <div class="vow__k">vos données</div>
+        <h3>Elles restent en France</h3>
+        <p>Vos flux tournent sur un serveur OVH, en France. Pas aux États-Unis, pas ailleurs.</p>
+        <p>Quand un flux a besoin d'une intelligence artificielle, je vous dis laquelle et ce qu'elle voit,
+          avant de le construire. Si vous préférez que non, on fait sans.</p>
+      </div>
+    </div>
+    <p class="src rv rv-4">Un dirigeant de TPE-PME sur deux ne sait pas s'il est en règle avec le RGPD.
+      OpinionWay pour Captain Contrat, plus de 500 dirigeants.</p>
+  </div>
+</section>
+
+<!-- les prix -->
+<section id="prix" aria-labelledby="h-prix">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="kicker rv">Les prix</p>
+      <h2 id="h-prix" class="rv rv-2">Les prix, tout de suite</h2>
+      <p class="sec-lead rv rv-3">Les devis d'automatisation varient du simple au quintuple sans qu'on comprenne
+        ce qu'on paie. Voici les miens.</p>
+    </div>
+
+    <div class="pgroup rv rv-2">
+      <p class="pgroup__lb">la construction, une fois</p>
+      <div class="prices">
+        <div class="price">
+          <div class="tag">automatisation simple</div>
+          <div class="amt">150 <small>€</small></div>
+          <h3>Une tâche, un déclencheur, une action</h3>
+          <p>Une relance qui part, un avis qui se demande, un rendez-vous qui se confirme.</p>
+          <div class="when">livrée en une semaine</div>
+        </div>
+        <div class="price">
+          <div class="tag">automatisation complexe</div>
+          <div class="amt">500 <small>€</small></div>
+          <h3>Plusieurs outils reliés, des conditions, des cas particuliers</h3>
+          <p>Un devis qui part, se relance tout seul, et bascule en facture.</p>
+          <div class="when">livrée en deux à trois semaines</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pgroup rv rv-3">
+      <p class="pgroup__lb">le suivi, chaque mois, sans engagement</p>
+      <div class="prices">
+        <div class="price">
+          <div class="tag">assistance</div>
+          <div class="amt">15 <small>€ / mois</small></div>
+          <h3>Je répare, et je réponds à vos questions</h3>
+          <ul>
+            <li>Réparation si un flux s'arrête</li>
+            <li>Aide à l'utilisation, autant que vous en avez besoin</li>
+            <li>Vos flux tournent chez vous ou chez votre hébergeur</li>
+          </ul>
+          <div class="when">résiliable en un mail</div>
+        </div>
+        <div class="price price--hi">
+          <div class="tag">maintenance</div>
+          <div class="amt">35 <small>€ / mois</small></div>
+          <h3>Tout ce qu'il y a dans l'assistance, et je surveille</h3>
+          <ul>
+            <li>Réparation sous 48 heures ouvrées</li>
+            <li>Aide à l'utilisation</li>
+            <li>Hébergement de vos flux sur mon serveur OVH, en France</li>
+            <li>Surveillance qui me prévient avant vous</li>
+          </ul>
+          <div class="when">résiliable en un mail</div>
+        </div>
+      </div>
+    </div>
+
+    <p class="price-note rv rv-4">Pas de frais de dossier, pas de pourcentage, pas de surprise. Le devis est le
+      prix. Et le suivi n'est pas obligatoire : vous pouvez très bien repartir avec vos flux et les faire
+      tourner vous-même.</p>
+  </div>
+</section>
+
+<!-- les questions -->
+<section id="faq" aria-labelledby="h-faq">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="kicker rv">Les questions</p>
+      <h2 id="h-faq" class="rv rv-2">Ce qu'on me demande avant de signer</h2>
+    </div>
+    <div class="faq rv rv-2">
+      <details>
+        <summary>Je ne comprends rien à la technique. C'est un problème ?</summary>
+        <p>Non, c'est même le point. Vous me décrivez votre journée, pas vos logiciels. Le vocabulaire technique
+          reste de mon côté.</p>
+      </details>
+      <details>
+        <summary>Quelle différence entre l'assistance à 15 € et la maintenance à 35 € ?</summary>
+        <p>L'assistance, c'est moi qui répare et qui réponds à vos questions. La maintenance, c'est tout ça,
+          plus l'hébergement de vos flux et une surveillance qui me prévient dès qu'un flux s'arrête. Avec
+          l'assistance seule, c'est vous qui vous apercevez de la panne. Avec la maintenance, c'est moi.</p>
+      </details>
+      <details>
+        <summary>Combien de temps avant que ça tourne ?</summary>
+        <p>Une semaine pour une automatisation simple, deux à trois pour une complexe. Vous voyez le flux marcher
+          avant qu'il soit branché.</p>
+      </details>
+      <details>
+        <summary>Et si vous disparaissez ?</summary>
+        <p>Vous gardez tout : les fichiers du flux et sa documentation. n8n est libre et répandu, donc un autre
+          prestataire reprend là où j'ai laissé.</p>
+      </details>
+      <details>
+        <summary>Vous utilisez de l'intelligence artificielle ?</summary>
+        <p>Seulement quand la tâche en a besoin, et jamais sans vous le dire avant. La plupart des automatisations
+          utiles n'en contiennent aucune.</p>
+      </details>
+      <details>
+        <summary>Je suis tout seul, c'est trop petit pour moi ?</summary>
+        <p>C'est exactement la bonne taille. Une personne seule est celle qui gagne le plus à ne pas faire deux fois
+          la même saisie.</p>
+      </details>
+      <details>
+        <summary>Il y a un engagement ?</summary>
+        <p>Non. Le suivi se résilie en un mail, et les flux restent les vôtres.</p>
+      </details>
     </div>
   </div>
 </section>
 
-<section id="contact">
+<!-- on se parle -->
+<section id="parler" aria-labelledby="h-parler">
   <div class="wrap">
-    <div class="contact-box">
-      <h2>On en parle ?</h2>
-      <p>15 minutes suffisent pour voir si ça vaut le coup. Aucun engagement, aucun jargon technique.</p>
-      <div class="contact-links">
-        <a class="btn-primary" href="mailto:contact@amaellavaysse.dev?subject=Automatisation%20pour%20mon%20entreprise">Écrire un email</a>
-        <a class="btn-ghost" href="tel:+33782946767">07 82 94 67 66</a>
+    <div class="sec-head">
+      <p class="kicker rv">On se parle</p>
+      <h2 id="h-parler" class="rv rv-2">Racontez-moi votre semaine</h2>
+    </div>
+    <div class="talk">
+      <div class="rv rv-2">
+        <p class="talk__lead">Écrivez-moi, en une phrase, ce qui vous prend le plus de temps dans la semaine.
+          Par exemple : je relance mes factures impayées à la main, une par une.</p>
+        <a class="mail" href="mailto:contact@amaellavaysse.dev?subject=Automatisation%2C%20mon%20cas&amp;body=Bonjour%20Ama%C3%ABl%2C%0A%0ACe%20qui%20me%20prend%20le%20plus%20de%20temps%20dans%20la%20semaine%20%3A%0A%0A">contact@amaellavaysse.dev</a>
+        <p class="talk__note">Je réponds sous 24 heures, du lundi au vendredi. Pas de formulaire, pas de robot,
+          pas de liste de diffusion. Vous pouvez aussi voir mon parcours sur
+          <a href="https://amaellavaysse.dev">amaellavaysse.dev</a>.</p>
+      </div>
+      <div class="card-reach rv rv-3">
+        <h3>Ce qui se passe ensuite</h3>
+        <ol>
+          <li><b>01</b>Je vous réponds et on cale trente minutes, en visio ou chez vous.</li>
+          <li><b>02</b>Je vous dis franchement ce qui vaut le coup d'automatiser, et ce qui n'en vaut pas la peine.</li>
+          <li><b>03</b>Si on continue, vous avez un prix ferme avant que je commence.</li>
+        </ol>
+        <div class="reach">
+          <a href="mailto:contact@amaellavaysse.dev">
+            <span class="lb">mail</span><span class="vl">contact@amaellavaysse.dev</span></a>
+          <a href="tel:+33782946766">
+            <span class="lb">téléphone</span><span class="vl">07 82 94 67 66</span></a>
+        </div>
       </div>
     </div>
   </div>
 </section>
+
+</main>
 
 <footer>
-  Amaël Lavaysse — automatisation locale · La Rochelle / Niort
+  <div class="wrap">
+    <p>Amaël Lavaysse. Automatisations n8n, France. <a href="https://amaellavaysse.dev">amaellavaysse.dev</a></p>
+    <p class="fine">Site sans mouchard, sans cookie, sans appel extérieur.</p>
+  </div>
 </footer>
 
+<div class="actionbar">
+  <a class="ab ab--main" href="mailto:contact@amaellavaysse.dev?subject=Automatisation%2C%20mon%20cas&amp;body=Bonjour%20Ama%C3%ABl%2C%0A%0ACe%20qui%20me%20prend%20le%20plus%20de%20temps%20dans%20la%20semaine%20%3A%0A%0A">écrire</a>
+  <a class="ab" href="tel:+33782946766">appeler</a>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+  /* ---- révélations de section ---- */
+  if (!('IntersectionObserver' in window) || reduce.matches) {
+    document.querySelectorAll('.rv').forEach(function(e){ e.classList.add('in'); });
+  } else {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if (en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); }
+      });
+    }, { rootMargin: '0px 0px -10% 0px', threshold: 0.08 });
+    document.querySelectorAll('.rv').forEach(function(e){ io.observe(e); });
+  }
+
+  /* ---- le compteur ---- */
+  var mins = { relances: 45, avis: 20, rdv: 60, recopiage: 90 };
+  var perWeek = document.getElementById('perWeek'), perYear = document.getElementById('perYear');
+
+  function fmtDur(m){
+    var h = Math.floor(m / 60), r = m % 60;
+    if (h === 0) return r + ' min';
+    if (r === 0) return h + ' h';
+    return h + ' h ' + (r < 10 ? '0' + r : r);
+  }
+  function renderCalc(){
+    var total = 0, key;
+    for (key in mins) total += mins[key];
+    perWeek.innerHTML = fmtDur(total) + ' <em>par semaine</em>';
+    var days = Math.round(total * 47 / 60 / 8);
+    perYear.innerHTML = days + ' <em>' + (days > 1 ? 'journées' : 'journée') + ' de travail par an</em>';
+  }
+  document.querySelectorAll('.step').forEach(function(step){
+    var task = step.dataset.task, out = step.querySelector('output');
+    step.querySelectorAll('button').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var d = parseInt(btn.dataset.d, 10);
+        mins[task] = Math.max(0, Math.min(300, mins[task] + d));
+        out.textContent = mins[task] + ' min';
+        renderCalc();
+      });
+    });
+  });
+  renderCalc();
+
+})();
+</script>
 </body>
 </html>
