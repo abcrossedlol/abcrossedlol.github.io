@@ -248,7 +248,8 @@ sup { font-size: 0.6em; }
   font-size: 0.88rem;
 }
 .cert__name { color: var(--text); }
-.cert__year { font-family: var(--mono); color: var(--muted); font-size: 0.78rem; }
+.cert__year { font-family: var(--mono); color: var(--muted); font-size: 0.78rem; white-space: nowrap; }
+.cert__year--prep { color: var(--amber); }
 
 /* projects */
 .projects__grid {

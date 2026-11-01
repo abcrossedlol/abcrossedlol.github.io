@@ -6,17 +6,22 @@ document.getElementById('year').textContent = new Date().getFullYear();
 // =========================================================
 const lines = [
   { text: '$ whoami', pause: 300 },
-  { text: 'amael.lavaysse — chargé SSI & support N2, futur admin sys & réseaux', pause: 400 },
+  { text: 'amael.lavaysse — chargé SSI & support N2, direction pentest / sécurité offensive', pause: 400 },
   { text: '', pause: 100 },
   { text: '$ cat parcours.txt', pause: 300 },
-  { text: 'BTS SIO SISR (diplômé) -> Bac+4 Admin Sys & Réseaux, ENI School Niort (sept. 2026)', pause: 250 },
-  { text: 'Alternance : Chargé SSI & Support N2 — Territoria Prévoyance', pause: 400 },
+  { text: 'BTS SIO SISR (diplômé) -> Bac+4 Admin Sys, Réseaux & Cybersécurité, ENI School Niort (2026-2028)', pause: 250 },
+  { text: 'Alternance : Chargé SSI & Support N2 — Territoria Prévoyance, Niort', pause: 400 },
   { text: '', pause: 100 },
   { text: '$ ls skills/', pause: 300 },
-  { text: 'windows.sh  linux.sh  python.sh  n8n.sh  powershell.sh  active-directory/  virtualisation/', pause: 400 },
+  { text: 'nmap.sh  pentest.sh  windows.sh  linux.sh  active-directory/  opnsense.sh  python.sh  powershell.sh  n8n.sh', pause: 400 },
+  { text: '', pause: 100 },
+  { text: '$ cat certs.txt', pause: 300 },
+  { text: 'TryHackMe (Pre Security, Advent of Cyber) · SecNumacadémie · PIX', pause: 250 },
+  { text: 'eJPT — en préparation', pause: 400 },
   { text: '', pause: 100 },
   { text: '$ status', pause: 300 },
-  { text: '[OK] en poste — Bac+4 admin sys & réseaux, Niort, dès septembre 2026', pause: 0 },
+  { text: '[OK] homelab Proxmox actif — AD, segmentation OPNsense, Pi-hole', pause: 250 },
+  { text: '[OK] en poste — Chargé SSI & Support N2, Niort, depuis septembre 2026', pause: 0 },
 ];
 
 const target = document.getElementById('typewriter');
