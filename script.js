@@ -73,6 +73,7 @@ const fs = {
   experience: { id: 'experience', type: 'dir',  label: 'experience' },
   projets:    { id: 'projects',   type: 'dir',  label: 'projets' },
   thm:        { id: 'thm',        type: 'dir',  label: 'thm' },
+  writeups:   { id: 'writeups',   type: 'dir',  label: 'writeups', href: 'writeups/' },
   contact:    { id: 'contact',    type: 'dir',  label: 'contact' },
   cv:         { id: 'cv',         type: 'file', label: 'CV_LAVAYSSE_AMAËL.pdf' },
 };
@@ -94,8 +95,12 @@ function resolve(name) {
   return fs[key] || null;
 }
 
-function goTo(id) {
-  const el = document.getElementById(id);
+function goTo(entry) {
+  if (entry.href) {
+    window.location.href = entry.href;
+    return;
+  }
+  const el = document.getElementById(entry.id);
   if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
@@ -129,7 +134,7 @@ function runCommand(raw) {
 
   if (cmd === 'cd') {
     if (!arg || arg === '..' || arg === '/' || arg === '~') {
-      goTo('top');
+      goTo({ id: 'top' });
       return;
     }
     const entry = resolve(arg);
@@ -138,7 +143,7 @@ function runCommand(raw) {
     } else if (entry.type === 'file') {
       printLine(`bash: cd: ${entry.label}: n'est pas un dossier (essaie 'cat ${arg}')`, 'cmdbar__error');
     } else {
-      goTo(entry.id);
+      goTo(entry);
     }
     return;
   }
@@ -152,9 +157,9 @@ function runCommand(raw) {
     if (!entry) {
       printLine(`cat: ${arg}: fichier introuvable`, 'cmdbar__error');
     } else if (entry.type === 'dir') {
-      goTo(entry.id);
+      goTo(entry);
     } else {
-      goTo(entry.id);
+      goTo(entry);
       window.open('CV_LAVAYSSE_AMAËL.pdf', '_blank');
     }
     return;
@@ -163,7 +168,7 @@ function runCommand(raw) {
   const direct = resolve(cmd.replace(/^\/+/, ''));
   if (direct) {
     if (direct.type === 'file') window.open('CV_LAVAYSSE_AMAËL.pdf', '_blank');
-    goTo(direct.id);
+    goTo(direct);
     return;
   }
 

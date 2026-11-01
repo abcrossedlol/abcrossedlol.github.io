@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Writeups — Amaël Lavaysse</title>
+<meta name="description" content="Writeups de rooms TryHackMe par Amaël Lavaysse — reconnaissance, exploitation, et ce qui en ressort.">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css">
+<script data-goatcounter="https://amael.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+</head>
+<body>
+
+<div class="scanlines" aria-hidden="true"></div>
+
+<nav class="nav">
+  <span class="nav__logo">root@<span class="nav__name">amael</span></span>
+  <div class="nav__links">
+    <a href="../index.html#about">whoami</a>
+    <a href="../index.html#experience">parcours</a>
+    <a href="../index.html#projects">projets</a>
+    <a href="../index.html#thm">thm</a>
+    <a href="./">writeups</a>
+    <a href="../index.html#contact">contact</a>
+  </div>
+</nav>
+
+<main class="wu-page">
+  <a class="wu-back" href="../index.html#writeups">&larr; retour au portfolio</a>
+  <p class="section__log">005</p>
+  <h1>writeups</h1>
+  <p class="section__sub">Résolutions de rooms TryHackMe, détaillées pas à pas : reconnaissance, exploitation, et ce que j'en retiens.</p>
+
+  <div class="wu-filters">
+    <input class="wu-search" id="wuSearch" type="text" placeholder="chercher une room ou un mot-clé…" autocomplete="off">
+    <select class="wu-filter" id="wuFilter">
+      <option value="">toutes les plateformes</option>
+      <option value="TryHackMe">TryHackMe</option>
+    </select>
+  </div>
+
+  <div class="wu-grid" id="wuGrid">
+
+    <!-- DUPLIQUER CE BLOC pour chaque nouveau writeup, puis retirer wu-card--placeholder -->
+    <a class="wu-card wu-card--placeholder" href="exemple-premier-writeup.html"
+       data-platform="TryHackMe" data-title="nom de la room exemple premier writeup">
+      <span class="wu-card__flag">exemple — à remplacer</span>
+      <div class="wu-card__head">
+        <span class="badge badge--platform">TryHackMe</span>
+        <span class="badge badge--easy">easy</span>
+        <span class="wu-card__date">À venir</span>
+      </div>
+      <h3>Nom de la room</h3>
+      <p>Résumé en une phrase de la vulnérabilité exploitée et du chemin suivi jusqu'au flag.</p>
+      <span class="wu-card__link">Lire le writeup →</span>
+    </a>
+
+  </div>
+
+  <p class="wu-empty" id="wuEmpty">Aucun writeup ne correspond à cette recherche.</p>
+</main>
+
+<footer class="footer">
+  <p>&copy; <span id="year"></span> Amaël Lavaysse. Développé avec l'aide de Claude (Anthropic), personnalisé par mes soins.</p>
+</footer>
+
+<script>
+document.getElementById('year').textContent = new Date().getFullYear();
+
+const wuSearch = document.getElementById('wuSearch');
+const wuFilter = document.getElementById('wuFilter');
+const wuGrid = document.getElementById('wuGrid');
+const wuEmpty = document.getElementById('wuEmpty');
+const wuCards = Array.from(wuGrid.querySelectorAll('.wu-card'));
+
+function applyWuFilters() {
+  const q = wuSearch.value.trim().toLowerCase();
+  const platform = wuFilter.value;
+  let visible = 0;
+  wuCards.forEach(card => {
+    const matchesQuery = !q || card.dataset.title.includes(q);
+    const matchesPlatform = !platform || card.dataset.platform === platform;
+    const show = matchesQuery && matchesPlatform;
+    card.style.display = show ? '' : 'none';
+    if (show) visible++;
+  });
+  wuEmpty.classList.toggle('is-visible', visible === 0);
+}
+
+wuSearch.addEventListener('input', applyWuFilters);
+wuFilter.addEventListener('change', applyWuFilters);
+</script>
+</body>
+</html>

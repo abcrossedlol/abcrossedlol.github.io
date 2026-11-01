@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>[Nom de la room] — Writeup — Amaël Lavaysse</title>
+<meta name="description" content="Writeup de la room TryHackMe [Nom de la room] : reconnaissance, exploitation et flag.">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css">
+<script data-goatcounter="https://amael.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+</head>
+<body>
+
+<div class="scanlines" aria-hidden="true"></div>
+
+<nav class="nav">
+  <span class="nav__logo">root@<span class="nav__name">amael</span></span>
+  <div class="nav__links">
+    <a href="../index.html#about">whoami</a>
+    <a href="../index.html#experience">parcours</a>
+    <a href="../index.html#projects">projets</a>
+    <a href="../index.html#thm">thm</a>
+    <a href="./">writeups</a>
+    <a href="../index.html#contact">contact</a>
+  </div>
+</nav>
+
+<main class="wu-page">
+  <a class="wu-back" href="./">&larr; retour aux writeups</a>
+
+  <!-- ===========================================================
+       CECI EST UN GABARIT. Pour un vrai writeup :
+       1. Renomme ce fichier (ex: hidden-heart.html)
+       2. Remplace tout ce qui est entre [crochets]
+       3. Ajoute/retire des .wu-term et <p> selon le déroulé réel
+       4. Retire ce commentaire et le bandeau EXEMPLE ci-dessous
+       5. Ajoute une vraie carte dans writeups/index.html et dans
+          la section 005 de ../index.html (en retirant wu-card--placeholder)
+  =========================================================== -->
+  <p class="wu-callout" style="margin-bottom:24px">
+    <strong>Ceci est un exemple.</strong> Remplace le contenu entre crochets par
+    ton vrai déroulé, puis supprime ce bandeau.
+  </p>
+
+  <header class="wu-hero">
+    <div class="wu-hero__badges">
+      <span class="badge badge--platform">TryHackMe</span>
+      <span class="badge badge--easy">easy</span>
+      <span class="wu-hero__date">[jour mois année]</span>
+    </div>
+    <h1>[Nom de la room]</h1>
+    <p class="wu-hero__event">[Nom de l'event/catégorie, ex: TryHackMe CTF]</p>
+  </header>
+
+  <article class="wu-body">
+    <p>[Une ou deux phrases qui présentent la room : difficulté annoncée, contexte, scénario.]</p>
+
+    <h2>Reconnaissance</h2>
+    <p>On commence par exporter l'IP de la cible dans une variable d'environnement :</p>
+
+    <div class="wu-term">
+      <div class="wu-term__bar">shell</div>
+      <pre>export IP="[IP de la cible]"</pre>
+    </div>
+
+    <p>Puis un scan Nmap classique pour voir ce qui écoute :</p>
+
+    <div class="wu-term">
+      <div class="wu-term__bar">shell</div>
+      <pre>nmap -sV $IP</pre>
+    </div>
+
+    <div class="wu-term">
+      <div class="wu-term__bar">sortie</div>
+      <pre>[coller ici le résultat du scan]</pre>
+    </div>
+
+    <p>[Ce que le scan révèle : les ports/services ouverts, et lequel on choisit d'attaquer en premier.]</p>
+
+    <h2>Exploitation</h2>
+    <p>[Les étapes suivies, dans l'ordre, avec une commande par bloc.]</p>
+
+    <div class="wu-term">
+      <div class="wu-term__bar">shell</div>
+      <pre>[commande]</pre>
+    </div>
+
+    <p>[Ce que cette commande donne, et pourquoi on passe à l'étape suivante.]</p>
+
+    <p class="wu-callout"><strong>Astuce :</strong> [un indice ou un piège à signaler, optionnel — supprime ce bloc sinon.]</p>
+
+    <h2>Le flag</h2>
+    <p>[Comment on obtient finalement l'accès ou le flag.]</p>
+
+    <div class="wu-term">
+      <div class="wu-term__bar">flag</div>
+      <pre>THM{[flag]}</pre>
+    </div>
+  </article>
+
+  <section class="wu-lesson">
+    <h2>Ce que j'en retiens</h2>
+    <p>[Une leçon concrète tirée de cette room — ce qui a marché, ce qu'il fallait vérifier plus tôt.]</p>
+  </section>
+</main>
+
+<footer class="footer">
+  <p>&copy; <span id="year"></span> Amaël Lavaysse. Développé avec l'aide de Claude (Anthropic), personnalisé par mes soins.</p>
+</footer>
+
+<script>
+document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
